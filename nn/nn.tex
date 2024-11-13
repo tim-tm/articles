@@ -90,8 +90,9 @@ In den folgenden Abbildungen steht $x$ bzw. $x_1$, $x_2$ für die Bits auf die, 
     \caption{XOR-Operation}
 \end{figure}
 
-\chapter{Modellierung: UND}
-\section{Erster Ansatz}
+\chapter{Modellierung}
+\section{UND-Operation}
+\subsection{Erster Ansatz}
 \begin{figure}[ht]
     \centering
     \begin{tikzpicture}
@@ -156,7 +157,7 @@ Schnell wird klar, dass das Gleichungssystem keine Lösung hat.
     1&=w_1+w_2
 \end{align}
 
-\section{Der Bias}
+\subsection{Der Bias}
 Der nächste logische Schritt ist einen sogenannten \say{bias} zu nutzen, um mehr Parameter im Gleichungssystem zu haben, die verändert werden dürfen.
 \begin{figure}[ht]
     \centering
@@ -227,7 +228,7 @@ Nun fällt auf, dass diese Gleichungen exakt den vorherigen Gleichungen entsprec
     \text{I:}\quad b=0
 \end{align}
 
-\section{Sigmoidfunktion}
+\subsection{Sigmoidfunktion}
 \begin{flushleft}   
 Das nächste Problem der Modellierung ist, dass für $y$ bisher nur exakte Werte genutzt wurden.
 Jedoch wäre es eigentlich egal, ob beispielsweise bei der ersten Gleichung für $y$ der Wert $0.00001$, oder eben der exakte Wert $0$ herauskommt.
@@ -372,6 +373,57 @@ Somit ist eine Lösung des Modells:
         20 \\
         20
     \end{pmatrix}-30\right)
+\end{align}
+
+\section{ODER-Operation}
+Grundsätzlich ist das Modell der ODER-Operation gleich, dem in Abbildung \ref{fig:net2} gezeigten Modell.
+
+Somit gilt also auch:
+\begin{align}
+    y&=\sigma\left(\begin{pmatrix}
+        x_1 \\
+        x_2
+    \end{pmatrix}\cdot
+    \begin{pmatrix}
+        w_1 \\
+        w_2
+    \end{pmatrix}+b\right)
+\end{align}
+Es ergeben sich die folgenden Gleichungen:
+\begin{align}
+    \text{I:}&\quad 0\approx\sigma(b) \\
+    \text{II:}&\quad 1\approx\sigma(w_2+b) \\
+    \text{III:}&\quad 1\approx\sigma(w_1+b) \\
+    \text{IIII:}&\quad 1\approx\sigma(w_1+w_2+b)
+\end{align}
+Wenn man der vorherigen Annahme, dass $\sigma(-10)\approx 0,\sigma(10)\approx 1$ gilt folgt, sind hier die passenden Ungleichungen:
+\begin{align}
+    w_2+b\geq 10,&\quad\text{da}\quad\sigma(x)\approx 1\quad\forall x\geq 10 \\
+    w_1+b\geq 10,&\quad\text{da}\quad\sigma(x)\approx 1\quad\forall x\geq 10 \\
+    w_1+w_2+b\geq10,&\quad\text{da}\quad\sigma(x)\approx 1\quad\forall x\geq 10
+\end{align}
+Eine mögliche Lösung ist:
+\begin{align}
+    b\leq 10 \quad\land\quad w_2\geq 10-b \quad\land\quad w_1\geq 10-b
+\end{align}
+Also gelten die Gleichungen für beispielsweise:
+\begin{align}
+    b=-10,&\quad w_2=20,\quad w_1=20 \\
+    \text{I:}&\quad 0\approx\sigma(-10) \\
+    \text{II:}&\quad 1\approx\sigma(10) \\
+    \text{III:}&\quad 1\approx\sigma(10) \\
+    \text{IIII:}&\quad 1\approx\sigma(30)
+\end{align}
+Die ODER-Operation kann also durch die folgende Funktion $y$ in Abhängigkeit von $x_1$ und $x_2$ zu berechnen:
+\begin{align}
+    y&=\sigma\left(\begin{pmatrix}
+        x_1 \\
+        x_2
+    \end{pmatrix}\cdot
+    \begin{pmatrix}
+        20 \\
+        20
+    \end{pmatrix}-10\right)
 \end{align}
 
 \listoffigures
