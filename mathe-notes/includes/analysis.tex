@@ -1,0 +1,751 @@
+\chapter{Analysis}
+
+\section{Funktionsscharen}
+\subsection{Definition}
+\begin{flushleft}
+    Eine Funktionsschar ist eine Funktion, die auch von anderen Parametern als $x$ abhängt.
+    Durch einen weiteren Parameter kann es plötzlich unendlich viele Variationen von der ursprünglichen Funktion geben.
+    Das ist auch der Grund dafür, dass solch eine Funktion, Funktionsschar genannt wird.
+    Es entsteht eine Menge -- also ein Schar -- von Funktionen.
+\end{flushleft}
+
+\subsection{Beispiel}
+\begin{flushleft}
+    Das ist beispielsweise eine quadratische Funktionsschar, die von den Parametern $x$ und $k$ abhängt.
+    \begin{align}
+        f_k(x)=kx^2
+    \end{align}
+    Der Parameter $k$ bestimmt nur die Stauchung der Funktion.
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    samples=35,
+    domain=-5:5,
+    every axis plot/.append style={thick},
+]
+\addplot[
+    color=red,
+]
+{x^2};
+\addlegendentry{$x^2$}
+
+\addplot[
+    color=green,
+]
+{0.5*x^2};
+\addlegendentry{$\frac{1}{2}x^2$}
+
+\addplot[
+    color=blue,
+]
+{0.3333*x^2};
+\addlegendentry{$\frac{1}{3}x^2$}
+
+\addplot[
+    color=orange,
+]
+{0.25*x^2};
+\addlegendentry{$\frac{1}{4}x^2$}
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\section{Trassierungsaufgaben}
+\subsection{Definition}
+\begin{flushleft}
+    Das Ziel von Trassierungsaufgaben ist es anhand von bestimmten Angaben eine Funktion aufzustellen.
+    Deshalb ist das Verstehen der Aufgabenstellung der schwierigste Teil der Aufgabe.
+\end{flushleft}
+
+\subsection{Beispiel}
+\begin{flushleft}
+    Das ist eine mögliche Aufgabenstellung: \\
+    \textit{Eine quadratische Funktion hat im Punkt $P(0|0)$ eine Nullstelle und im Punkt $Q(2|5)$ ein Maximum. Stelle die Funktionsgleichung auf!} \\
+    \begin{enumerate}
+        \item {
+                Die ersten drei Wörter des Satzes: \textbf{\textit{Eine quadratische Funktion}} sagen uns um welchen Typ Funktion es sich handelt.
+                Es ist eine quadratische Funktion. Die allgemeine quadratische Funktion sieht so aus:
+                \begin{align}
+                    f(x)=ax^2+bx+c
+                \end{align}
+                Unsere Funktion $f$ hat also drei unbekannte, $a$, $b$ und $c$.
+            }
+        \item {
+                Außerdem ist für uns wichtig, dass die Funktion \textbf{\textit{im Punkt $P(0|0)$ eine Nullstelle}} hat.
+                Das bedeutet, dass $f(0)=0$ sein muss.
+                Unsere erste Bedingung ist also:
+                \begin{align}
+                    f(0)=0
+                \end{align}
+            }
+        \item {
+                Als letztes hat unsere Funktion \textbf{\textit{im Punkt $Q(2|5)$ ein Maximum}}. \\
+                Um die Extrempunkte von einer Funktion (hier: $g$) zu finden, muss man die erste Ableitung dieser Funktion gleich $0$ setzen.
+                \begin{align}
+                    g'(x)=0
+                \end{align}
+                Im Idealfall bekommt man eine oder mehr Lösungen heraus, wir nennen die Lösung $x_1$.
+                Um herauszufinden um welche Art von Extrempunkt es sich handelt setzen wir $x_1$ in die zweite Ableitung von $g$ ein.
+                \begin{align}            
+                    g''(x) =
+                    \begin{cases}
+                        \text{Maximum}, &\text{wenn } x < 0 \\
+                        \text{Minimum}, &\text{wenn } x > 0
+                    \end{cases}
+                \end{align}
+                Jetzt können wir drei weitere Bedingungen für unsere Aufgabe aufstellen.
+                Unsere Funktion soll ein Maximum in $Q(2|5)$ haben, deshalb müssen diese Bedingungen erfüllt sein:
+                \begin{align}
+                    f(2)=5 \\
+                    f'(2)=0 \\
+                    f''(2) < 0
+                \end{align}
+            }
+        \item {
+                Jetzt müssen wir aus unseren vier Bedingungen eine Funktion bilden, dafür bilden wir erstmal die ersten beiden Ableitungen.
+                \begin{align}
+                    f(x)&=ax^2+bx+c \\
+                    f'(x)&=2ax+b \\
+                    f''(x)&=2a \\
+                    f(0)&=0 \\
+                    f(2)&=5 \\
+                    f'(2)&=0 \\
+                    f''(2) & < 0
+                \end{align}
+                Nun müssen wir einsetzen, Ungleichungen ($f''(2) < 0$) dürfen nicht eingesetzt werden.
+                \begin{align}
+                    0^2a+0b+c &=0 \\
+                    c &=0 \\
+                    a*2^2+2b+c &= 5 \\
+                    4a+2b+c &= 5 \\
+                    4a+2b &= 5 \\
+                    2a*2+b &=0 \\
+                    4a+b &= 0
+                \end{align}
+                Eine von den drei unbekannten ist gelöst ($c=0$).
+                Jetzt muss $4a+2b=5$ in $4a+b=0$ eingesetzt werden.
+                \begin{align}
+                    4a+2b &=5 \\
+                    4a+b &= 0 \\
+                    4a+2b-(4a+b) &= 5 \\
+                    b &= 5 \\
+                    4a+5 &= 0 \\
+                    a &= \frac{-5}{4}
+                \end{align}
+                Alle unbekannten Variablen sind gelöst, $a=\frac{-5}{4}$, $b=5$, $c=0$.
+                Also ist das unsere Funktion:
+                \begin{align}
+                    f(x)=\frac{-5}{4}x^2+5x
+                \end{align}
+            }
+    \end{enumerate}
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    samples=35,
+    domain=-1:5,
+    ymax=5.5,
+    every axis plot/.append style={thick},
+]
+\addplot[
+    color=red,
+]
+{(-5/4)*((\x)*(\x))+(5)*(\x)};
+\addlegendentry{$f(x)$}
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\section{Extremwertaufgaben}
+\subsection{Definition}
+\begin{flushleft}   
+    Bei Extemwertaufgaben geht es darum die maximal/minimal möglichen Flächeninhalte herauszufinden.
+    Dabei kann es oft auch um das maximale/minimale Volumen eines Körpers gehen.
+    Jedoch maximiert/minimiert sich das Volumen eines Körpers wenn der Flächeninhalt des Mantels maximal/minimal wird.
+    Die Aufgabenstellungen zu diesem Aufgabentyp sind meistens sehr spezifisch und brauchen eine Skizze.
+\end{flushleft}
+
+\subsection{Beispiel}
+\begin{flushleft}
+    In diesem Beispiel soll der maximale Flächeninhalt eines Dreiecks gefunden werden.
+    Das Dreieck ist unterhalb der Funktion $f$.
+    Die drei Ecken des Dreiecks sind die Punkte $P(u|v)$, $Q(0|0)$ und $R(u|0)$.
+    \begin{align}
+        f(x)=x^3-6x^2+9x
+    \end{align}
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}   
+\begin{axis}[
+    axis lines=middle,
+    samples=35,
+    domain=-1.5:5,
+    ymax=7,
+    ymin=-5,
+    every axis plot/.append style={thick},
+]
+\addplot[
+    color=red,
+    name path=A
+]
+{((\x)*(\x)*(\x))-(6*(\x)*(\x))+(9*(\x))};
+\addlegendentry{$f(x)$}
+
+\addplot[draw=none,name path=B] {(3.4/1.5)*(\x)};
+\addplot[draw=none,name path=C] {0};
+\addplot[red,opacity=0.3] fill between[of=B and C,soft clip={domain=0:1.5}];
+
+\node[label={150:{$Q(0|0)$}},circle,fill,inner sep=1pt] at (axis cs:0,0) {};
+\node[label={70:{$P(u|v)$}},circle,fill,inner sep=1pt] at (axis cs:1.5,3.4) {};
+\node[label={60:{$R(u|0)$}},circle,fill,inner sep=1pt] at (axis cs:1.5,0) {};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+    Um die Fläche $A$ eines Dreiecks auszurechnen nutzt man diese Formel, $g$ steht für die Grundseite und $h$ für die Höhe:
+    \begin{align}
+        A=\frac{gh}{2}
+    \end{align}
+    Mit $g$ und $h$ sieht der Plot so aus:
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}   
+\begin{axis}[
+    axis lines=middle,
+    samples=35,
+    domain=-1.5:4,
+    ymax=7,
+    ymin=-5,
+    every axis plot/.append style={thick},
+]
+\addplot[
+    color=red,
+    name path=A
+]
+{((\x)*(\x)*(\x))-(6*(\x)*(\x))+(9*(\x))};
+\addlegendentry{$f(x)$}
+
+\addplot[draw=none,name path=B] {(3.4/1.5)*(\x)};
+\addplot[draw=none,name path=C] {0};
+\addplot[red,opacity=0.3] fill between[of=B and C,soft clip={domain=0:1.5}];
+
+\node[label={150:{$Q(0|0)$}},circle,fill,inner sep=1pt] at (axis cs:0,0) {};
+\node[label={70:{$P(u|v)$}},circle,fill,inner sep=1pt] at (axis cs:1.5,3.4) {};
+\node[label={270:{$R(u|0)$}},circle,fill,inner sep=1pt] at (axis cs:1.5,0) {};
+
+\node[label={0:{$h$}},draw=none,inner sep=1pt] at (axis cs:1.5,1.5) {};
+\node[label={250:{$g$}},draw=none,inner sep=1pt] at (axis cs:0.75,0) {};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+    In unserem Beispiel ist $g=u$ und $h=v$, dazu ist $v=f(u)$.
+    Wenn wir diese Werte in $A$ einsetzen bildet sich diese Funktion:
+    \begin{align}
+        A(u) &=\frac{u*f(u)}{2} \\
+        A(u) &=\frac{u \left(u^3-6u^2+9u\right)}{2} \\
+        A(u) &=\frac{u^4-6u^3+9u^2}{2} \\
+        A(u) &=\frac{u^4}{2}-3u^3+\frac{9}{2}u^3
+    \end{align}
+    Unsere neue Funktion $A(u)$ kann jetzt den Flächeninhalt für jeden Wert von $u$ berechnen.
+    Wir brauchen den maximalen Flächeninhalt, also soll die Funktion für den Flächeninhalt ($A(u)$) maximal werden.
+    Um ein maximum zu berechnen bilden wir die ersten zwei Ableitungen unserer Funktion.
+    \begin{align}
+        A(u) &=\frac{u^4}{2}-3u^3+\frac{9}{2}u^3 \\
+        A'(u) &= 2u^3-9u^2+9u \\
+        A''(u) &= 6u^2-18u+9
+    \end{align}
+    Jetzt finden wir die Nullstelle der ersten Ableitung.
+    \begin{align}
+        A'(u) &=0 \\
+        \iff u_1=0, u_2 &=\frac{3}{2}, u_3=3
+    \end{align}
+    Danach prüfen wir, in welcher Stelle ein Maximum liegt.
+    \begin{align}
+        A''\left(0\right) = 9 & > 0 \Longrightarrow \text{Minimum} \\
+        A''\left(\frac{3}{2}\right) = \frac{-9}{2} & < 0 \Longrightarrow \text{Maximum} \\
+        A''\left(3\right) = 9 & > 0 \Longrightarrow \text{Minimum} \\
+        A\left(\frac{3}{2}\right) &= \frac{81}{32} \\
+        v=f\left(\frac{3}{2}\right) &= \frac{27}{8}
+    \end{align}
+    Der größte Flächeninhalt ist $\frac{81}{32}$, um diesen zu erreichen muss $u=\frac{3}{2}$ und $v=\frac{27}{8}$ sein.
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}   
+\begin{axis}[
+    axis lines=middle,
+    samples=35,
+    domain=-1.5:4,
+    ymax=7,
+    ymin=-5,
+    every axis plot/.append style={thick},
+]
+\addplot[
+    color=red,
+    name path=A
+]
+{((\x)*(\x)*(\x))-(6*(\x)*(\x))+(9*(\x))};
+\addlegendentry{$f(x)$}
+
+\addplot[draw=none,name path=B] {((27/8)/(3/2))*(\x)};
+\addplot[draw=none,name path=C] {0};
+\addplot[red,opacity=0.3] fill between[of=B and C,soft clip={domain=0:1.5}];
+
+\addplot[color=black,very thick] coordinates {(1.5,0) (1.5,3.375)};
+\addplot[color=black,very thick] coordinates {(0,0) (1.5,0)};
+
+\node[label={0:{$\frac{27}{8}$}},draw=none,inner sep=1pt] at (axis cs:1.5,1.5) {};
+\node[label={250:{$\frac{3}{2}$}},draw=none,inner sep=1pt] at (axis cs:0.75,0) {};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\section{Integralrechnung}
+\subsection{Stammfunktionen}
+\begin{flushleft}
+    Stammfunktionen sind Funktionen, die eine Funktion $f$ ergeben, wenn man sie ableitet.
+    Also gilt: $F'(x)=f(x)$.
+
+    Allgemein gilt die folgende Regel.
+    \begin{align}
+        f(x)&=x^n \\
+        F(x)&=\frac{x^{n+1}}{n+1}+C, n \in \mathbf{R} - \{-1\}
+    \end{align}
+    Wenn eine Funktion abgeleitet wird fällt jede Konstante weg, daher gibt es unendlich viele Stammfunktionen, die Konstante wird mit $C$ dargestellt.
+\end{flushleft}
+
+\subsection{Bestimmte Integrale}
+\begin{flushleft}
+    Bei bestimmten Integralen ist immer klar, welches Intervall gesucht ist.
+    Also gilt für ein Integral in dem Intervall $[a;b]$ diese Formel:
+    \begin{align}
+        \int_{a}^{b} f(x) \ dx = [F(x)]_{a}^{b}
+    \end{align}
+    Außerdem ist die Integralrechnung keine Flächenberechnung, daher werden oft Absolutbeträge genutzt. Damit wird das Ergebnis eines Integrals immer positiv.
+    Die Definition des Absolutbetrags sieht so aus:
+    \[
+        \left | x \right | =
+        \begin{cases}
+            x, &\text{wenn } x \geq 0 \\
+            -x, &\text{sonst}
+        \end{cases}
+    \]
+    Dass die Integralrechnung keine Flächenberechnung ist kann man sich schnell deutlich machen.
+    Haben wir beispielsweise die Funktion $f(x)=-x^2+4$ gegeben und wollen diese von $-2$ bis $2$ integrieren, sieht die Fläche, die wir berechnen wollen so aus:
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+        xmin=-3,
+        xmax=3,
+        ymax=5,
+        ymin=-2,
+        domain=-3:3,
+        samples=35,
+        axis lines=middle,
+        %unbound coords=discard,
+    ]
+    \addplot[red,thick,name path=A] ({\x},{-((\x)*(\x))+4});
+    \addlegendentry{\(f(x)=-x^2+4\)}
+    
+    \addplot[draw=none,name path=B] {0};
+    \addplot[red,opacity=0.3] fill between[of=A and B,soft clip={domain=-2:2}];
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+    Jetzt bilden wir das Integral und lösen es auf.
+    \begin{align}
+        &\int_{-2}^{2} -x^2+4 \ dx \\
+        = &\left[\frac{-x^3}{3}+4x\right]_{-2}^{2} \\
+        = &\left[\frac{-2^3}{3}+4*2-\left(\frac{-(-2)^3}{3}+4(-2)\right)\right] \\
+        = &\frac{32}{3}
+    \end{align}
+    Es gibt keine Probleme. Möchten wir jetzt jedoch von $2$ bis $4$ integrieren, stellen wir etwas komisches fest.
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+        xmin=0,
+        xmax=6,
+        ymax=5,
+        ymin=-6,
+        domain=0:6,
+        samples=35,
+        axis lines=middle,
+        %unbound coords=discard,
+    ]
+    \addplot[red,thick,name path=A] ({\x},{-((\x)*(\x))+4});
+    \addlegendentry{\(f(x)=-x^2+4\)}
+    
+    \addplot[draw=none,name path=B] {0};
+    \addplot[red,opacity=0.3] fill between[of=A and B,soft clip={domain=2:4}];
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+    Erstmal das Integral bilden.
+    \begin{align}
+        &\int_{2}^{4} -x^2+4 \ dx \\
+        = &\left[\frac{-x^3}{3}+4x\right]_{2}^{4} \\
+        = &\left[\frac{-4^3}{3}+4*4-\left(\frac{-2^3}{3}+4*2\right)\right] \\
+        = &\frac{-32}{3}
+    \end{align}
+    Das Ergebnis ist negativ, obwohl ein negativer Flächeninhalt nicht möglich ist.
+    Deshalb nutzen wir, wenn das Ergebnis des Integrals negativ ist -- was vorher geprüft werden sollte -- den Betrag des Ergebnisses.
+    \begin{align}
+        & \left | \int_{2}^{4} -x^2+4 \ dx \right | \\
+        = & \left | \frac{-32}{3} \right | \\
+        = &\frac{32}{3}
+    \end{align}
+\end{flushleft}
+
+\subsection{Flächen zwischen zwei Funktionen}
+\begin{flushleft}
+    Um die Fläche zwischen den beiden Funktionen $f$ und $g$ ($f \geq g$) im Intervall $[a;b]$ zu berechnen nutzt man diese Formel:
+    \begin{align}
+        \int_{a}^{b} \left[f(x)-g(x)\right] \ dx
+    \end{align}
+    Beispiel: $f(x)=-x^2+4$, $g(x)=2$
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+        xmin=-6,
+        xmax=6,
+        ymax=5,
+        ymin=-1,
+        domain=-6:6,
+        samples=35,
+        axis lines=middle,
+        %unbound coords=discard,
+    ]
+    \addplot[red,thick,name path=A] ({\x},{-((\x)*(\x))+4});
+    \addlegendentry{\(f(x)\)}
+    \addplot[blue,thick,name path=B] ({\x},{2});
+    \addlegendentry{\(g(x)\)}
+    
+    \addplot[red,opacity=0.3] fill between[of=A and B,soft clip={domain=-1.5:1.5}];
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+    Um die Fläche zwischen $f$ und $g$ zu bestimmen muss zunächst klar werden, welche Funktion in dem gezeigten Bereich größer ist.
+    Hier ist $f > g, [x_1;x_2]$, $x_1$ und $x_2$ stellen hier die Schnittpunkte der beiden Funktionen dar.
+    Jetzt darf einfach in die Formel eingesetzt werden, $x_1$ und $x_2$ müssen dafür natürlich erst bestimmt werden, das werden wir in diesem Beispiel jedoch nicht machen.
+    \begin{align}
+        \int_{x_1}^{x_2} \left[f(x)-g(x)\right] \ dx
+    \end{align}
+\end{flushleft}
+
+\subsection{Mittelwerte von Funktionen}
+\begin{flushleft}
+    \textbf{diskrete Mittelwerte}: \newline
+    Es wird ein Mittelwert aus einer Menge von Zahlen gebildet. \newline
+    \begin{align}
+        \{1,3&,5,4\} \\
+        \frac{1+3+5+4}{4}&=\frac{13}{4}=3.25
+    \end{align}
+    \newline
+    \textbf{kontinuierliche Mittelwerte}: \newline
+    Der Mittelwert wird aus Werten einer Funktion bestimmt. \newline
+    \begin{align}
+        \bar{m}=\frac{1}{b-a}\int_{a}^{b} f(x) \ dx
+    \end{align}
+    Beispiel: $f(x)=-x^2+4$
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+        xmin=-4,
+        xmax=4,
+        ymax=5,
+        ymin=-1,
+        domain=-4:4,
+        samples=35,
+        axis lines=middle,
+        %unbound coords=discard,
+    ]
+    \addplot[red,thick,name path=A] ({\x},{-((\x)*(\x))+4});
+    \addlegendentry{\(f(x)\)}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+    Wir wollen den Mittelwert $\bar{m}$ von $f$ in dem Interval $\left[-2;2\right]$ bestimmen.
+    Dafür setzen wir einfach in die Formel ein.
+    \begin{align}
+        \bar{m}&=\frac{1}{b-a}\int_{a}^{b} f(x) \ dx \\
+        \bar{m}&=\frac{1}{2-(-2)}\int_{-2}^{2} -x^2+4 \ dx \\
+        \bar{m}&=\frac{1}{4}\int_{-2}^{2} -x^2+4 \ dx \\
+        \bar{m}&=\frac{1}{4}\left[\frac{-x^3}{3}+4x\right]_{-2}^{2} \\
+        \bar{m}&=\frac{1}{4}\left[\frac{-2^3}{3}+4*2-\left(\frac{-(-2)^3}{3}+4(-2)\right)\right] \\
+        \bar{m}&=\frac{1}{4}*\frac{32}{3} \\
+        \bar{m}&=\frac{8}{3}
+    \end{align}
+    Der Mittelwert der Funktion $f$ im Interval $\left[-2;2\right]$ ist also $\frac{8}{3}$.
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+        xmin=-4,
+        xmax=4,
+        ymax=5,
+        ymin=-1,
+        domain=-4:4,
+        samples=35,
+        axis lines=middle,
+        %unbound coords=discard,
+    ]
+    \addplot[red,thick,name path=A] ({\x},{-((\x)*(\x))+4});
+    \addlegendentry{\(f(x)\)}
+    
+    \addplot[blue,thick,name path=B] ({\x},{8/3});
+    \addlegendentry{\(\bar{m}\)}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\subsection{Rekonstruktion von Beständen}
+\begin{flushleft}
+    Bei diesem Aufgabentyp hat man immer eine Funktion (hier: $f$) gegeben, die die momentane Änderungsrate beschreiben soll, also wie stark etwas ansteigt oder fällt.
+    Um alle Teilaufgaben vernünftig zu lösen muss man erstmal die Stammfunktion bestimmen:
+    \begin{align}
+        f(x)&=F'(x) \\
+        F(x)&=\int f(x) \ dx
+    \end{align}
+    Die Konstante $C$, die beim integrieren erscheint sollte in der Aufgabenstellung gegeben sein.
+\end{flushleft}
+
+\subsection{Rotationskörper}
+\begin{flushleft}
+    Rotationskörper, sind Objekte, die sich bilden wenn eine Funktion um eine Achse rotiert.
+    Die Rotationsachse wird auch die Figureachse genannt.
+    Um allgemein das Volumen eines Rotationskörpers, der durch die Funktion $f$ beschrieben wird zu bestimmen nutzt man diese Formel:
+    \begin{align}
+        V=\pi\int_{a}^{b}\left[f(x)\right]^2 \ dx
+    \end{align}
+    Beispiel: $f(x)=x^2$, im Interval $[0;2]$
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+        xmin=-1,
+        xmax=4,
+        ymax=5,
+        ymin=-1,
+        domain=-1:4,
+        samples=35,
+        axis lines=middle,
+        %unbound coords=discard,
+    ]
+    \addplot[red,thick,name path=A] ({\x},{((\x)*(\x))});
+    \addlegendentry{\(f(x)\)}
+    
+    \addplot[draw=none,name path=B] ({\x},{0});
+    \addplot[red,opacity=0.3] fill between[of=A and B,soft clip={domain=0:2}];
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+    Wenn diese Funktion $f$ um die X-Achse rotiert wird, sieht der Körper, der entsteht in etwa so aus:
+\end{flushleft}
+
+% Code von: https://tex.stackexchange.com/questions/191091/function-rotated-about-the-x-axis
+\begin{center}
+    \def\aDomain{0}
+    \def\bDomain{2}
+
+    \def\fcn{\x^2}
+
+    \def\cRange{0}
+    \def\dRange{4}
+
+    \def\xGridSteps{8}
+
+    \def\rotationGridSteps{16}
+
+    \def\phi{17}
+
+\begin{tikzpicture}[domain= \aDomain: \bDomain]
+    \pgfmathsetmacro\intervalLength{\bDomain - \aDomain}
+    \pgfmathsetmacro\xGridStepsize{\intervalLength/\xGridSteps}
+    \pgfmathsetmacro\rotationGridStepsize{360/\rotationGridSteps}
+
+    \foreach \theta in {0, \rotationGridStepsize, ..., 180} {
+        \tikzset{xyplane/.estyle={cm={
+        cos(\phi), 0, sin(\theta)*sin(\phi),
+        cos(\theta), (0, 0)}}}
+        \draw[xyplane,smooth] plot (\x, \fcn) ;
+    }
+
+    \pgfmathsetmacro\nextStep{\aDomain + \xGridStepsize}
+    \foreach \x in {\aDomain,\nextStep, ...,\bDomain} {
+        \pgfmathsetmacro\xsh{(cos(\phi))*(\x)}
+        \pgfmathsetmacro\rad{(\fcn)}        
+        \tikzset{xyplane/.estyle={cm={cos(\phi - 90), 0,0,1,(\xsh, 0)}}}        
+        \draw[xyplane,black,thin,opacity=1] (0, \rad) arc (90 : 270 : \rad);
+    }
+
+    \foreach \theta in {0, \rotationGridStepsize, ..., 180} {
+        \tikzset{xyplane/.estyle={cm={cos(\phi), 0, sin(\theta)*sin(\phi),cos(\theta),(0, 0)}}}
+        \draw[xyplane,smooth] plot (\x, \fcn) ;
+    }
+
+    \foreach \x in {\aDomain, \nextStep, ..., \bDomain}{
+        \pgfmathsetmacro\xsh{(cos(\phi))*(\x)}
+        \pgfmathsetmacro\rad{(\fcn)}
+        \tikzset{xyplane/.estyle={cm={cos(\phi-90),0,0,1, (\xsh, 0)}}}
+        \draw[xyplane] (0, -\rad) arc (-90 : 90 : \rad);
+    }
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+    Jetzt interessiert uns das Volumen $V$, das dieser Körper hat.
+    Dazu setzen wir unsere Werte in die Formel ein.
+    \begin{align}
+        V &=\pi\int_{0}^{2}\left[x^2\right]^2 \ dx \\
+        V &=\pi\int_{0}^{2} x^4 \ dx \\
+        V &=\pi \left[\frac{x^5}{5}\right]_{0}^{2} \\
+        V &=\pi \left[\frac{2^5}{5}-\left(\frac{0^5}{5}\right)\right] \\
+        V &=\pi \frac{32}{5} \\
+        V &=\frac{32\pi}{5}
+    \end{align}
+    Nun wissen wir, dass das Volumen $V$ unseres Rotationskörpers $\frac{32\pi}{5}$ ist.
+\end{flushleft}
+
+\subsection{Uneigentliche Integrale}
+\begin{flushleft}
+    Uneigentliche Integrale sind bestimmte Integrale mit komplizierteren Integrationsgrenzen.
+    Oft wird $-\infty$ oder $+\infty$ in die Integrationsgrenzen eingebaut, es können jedoch auch Integrale mit richtigen Zahlen uneigentlich sein.
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+        xmin=0,
+        xmax=5,
+        ymax=5,
+        ymin=0,
+        domain=0.05:5,
+        samples=35,
+        axis y line=left,
+        axis x line=bottom,
+        restrict y to domain=0:5
+        %unbound coords=discard,
+    ]
+    \addplot[red,thick,name path=A] ({\x},{1/((\x)*(\x))});
+    \addlegendentry{\(f(x)=\frac{1}{x^2}\)}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+    Hier sieht man den Plot von $f(x)=\frac{1}{x^2}$.
+    Es lässt sich relativ gut erkennen, dass der Wert der Funktion immer größer wird, umso näher man der Y-Achse kommt.
+    Entfernt man sich also von der Y-Achse, wird der Wert immer kleiner.
+    Mathematisch lässt sich das so ausdrücken:
+    \begin{align}
+        \lim_{x \to 0} f(x) &= \infty \\
+        \lim_{x \to \infty} f(x) &= 0 \\
+        \lim_{x \to -\infty} f(x) &= 0
+    \end{align}
+    Diese Grenzen muss man beachten, wenn man uneigentliche Integrale, wie beispielsweise dieses Integral ausrechnen möchte.
+    \begin{align}
+        &\int_{1}^{\infty} f(x) \ dx
+    \end{align}
+    Mit diesem Integral würde man die folgende Fläche berechnen:
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+        xmin=0,
+        xmax=5,
+        ymax=5,
+        ymin=0,
+        domain=0.05:5,
+        samples=35,
+        axis y line=left,
+        axis x line=bottom,
+        restrict y to domain=0:5
+        %unbound coords=discard,
+    ]
+    \addplot[red,thick,name path=A] ({\x},{1/((\x)*(\x))});
+    \addlegendentry{\(f(x)=\frac{1}{x^2}\)}
+    
+    \addplot[draw=none,name path=B] {0};
+    \addplot[red,opacity=0.3] fill between[of=A and B,soft clip={domain=1:5}];
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+    Wenn man versucht dieses Integral zu berechnen fällt eine Besonderheit auf.
+    \begin{align}
+        &\int_{1}^{\infty} f(x) \ dx \\
+        &\int_{1}^{\infty} \frac{1}{x^2} \ dx \\
+        &\int_{1}^{\infty} x^{-2} \ dx \\
+        &\left[\frac{x^{-1}}{-1}\right]_{1}^{\infty} \\
+        &\left[\frac{-1}{x}\right]_{1}^{\infty}
+    \end{align}
+    Als obere Grenze kann nicht einfach $\infty$ eingesetzt werden, deshalb suchen wir einen Weg um uns an $\infty$ anzunähern.
+    \begin{align}
+        &\lim_{b \to \infty} \left[ \frac{-1}{x}\right]_{1}^{b}
+    \end{align}
+    Jetzt ist es möglich anstatt $\infty$ einfach unsere Variable $b$ einzusetzen und erstmal so weit wie möglich aufzulösen.
+    \begin{align}
+        &\lim_{b \to \infty} \left[ \frac{-1}{b} - \left(\frac{-1}{1}\right)\right] \\
+        &\lim_{b \to \infty} \left( \frac{-1}{b} + 1\right)
+    \end{align}
+    Nachdem wir so weit wie möglich vereinfacht haben, gucken wir uns jetzt jeden Bestandteil des Ergebnisses an.
+    Da unsere Variable $b$ ist, interessieren uns erstmal nur die Terme, in denen $b$ vorkommt.
+    $+1$ ist für den Limes irrelevant, da es kein $b$ enthält, $\frac{-1}{b}$ ist jedoch relevant, deshalb müssen wir uns $\frac{-1}{b}$ genauer angucken. \newline
+    Dazu müssen wir uns fragen, was passiert, wenn $b$ einen sehr großen Wert annimmt.
+    Anhand von ein paar Beispielen kann man das verhalten von $\frac{-1}{b}$ relativ gut verinnerlichen.
+    Man kann zur Veranschaulichung einfach ein paar Werte für $b$ einsetzen.
+    \begin{align}
+        &\frac{-1}{b} \\ 
+        \frac{-1}{2} &= -0.5 \\ 
+        \frac{-1}{4} &= -0.25 \\ 
+        \frac{-1}{8} &= -0.125 \\ 
+        \frac{-1}{16} &= -0.0625
+    \end{align}
+    Wie man relativ gut erkennen kann, geht $\frac{-1}{b}$ immer weiter gegen $0$, desto größer der Wert für $b$ ist.
+    Das bedeutet für unsere ursprüngliche Frage, dass dieser Term wegfällt.
+    \begin{align}
+        \lim_{b \to \infty} &\left( \frac{-1}{b} + 1\right) \\
+        &=1 \\
+        \int_{1}^{\infty} f(x) \ dx &= 1
+    \end{align}
+    Nach ein wenig Rechnerei wissen wir also, dass unser uneigentliches Integral, welches eine obere Grenze von $\infty$ hat, nicht den Wert von $\infty$, 
+    sondern einen Wert von $1$ hat.
+\end{flushleft}
