@@ -10,7 +10,7 @@ done
 cd build
 
 files=""
-for f in ./*.pdf
+for f in *.pdf
 do
     files+="${f} "
 done
