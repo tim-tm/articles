@@ -15,6 +15,7 @@
     \label{fig:net0}
 \end{figure}
 
+\begin{flushleft}   
 Der erste Ansatz eines neuronalen Netzes ist in Abbildung \ref{fig:net0} dargestellt.
 Das Ergebnis ($y$) setzt sich wie folgt zusammen:
 \begin{align}
@@ -64,9 +65,14 @@ Schnell wird klar, dass das Gleichungssystem keine Lösung hat.
     0&=w_2 \\
     1&=w_1+w_2
 \end{align}
+\end{flushleft}
 
 \subsection{Der Bias}
-Der nächste logische Schritt ist einen sogenannten \say{bias} zu nutzen, um mehr Parameter im Gleichungssystem zu haben, die verändert werden dürfen.
+\begin{flushleft}
+Der nächste logische Schritt ist einen sogenannten \say{bias} zu nutzen,
+um mehr Parameter im Gleichungssystem zu haben, die verändert werden dürfen.
+\end{flushleft}
+
 \begin{figure}[ht]
     \centering
     \begin{tikzpicture}
@@ -82,6 +88,7 @@ Der nächste logische Schritt ist einen sogenannten \say{bias} zu nutzen, um meh
     \label{fig:net1}
 \end{figure}
 
+\begin{flushleft}
 Für die Abbildung \ref{fig:net1} gilt folgendes:
 \begin{align}
     y&=x_1w_1+x_2w_2+b \\
@@ -134,7 +141,8 @@ Es ergeben sich also die folgenden Gleichungen:
 Nun fällt auf, dass diese Gleichungen exakt den vorherigen Gleichungen entsprechen, da die erste Gleichung wie folgt lautet:
 \begin{align}
     \text{I:}\quad b=0
-\end{align}
+\end{align}   
+\end{flushleft}
 
 \subsection{Sigmoidfunktion}
 \begin{flushleft}   
@@ -145,10 +153,10 @@ Relevant ist, dass $y$ der $0$ relativ nahe kommt.
 Dies kann durch den Einsatz der Sigmoidfunktion erreicht werden.
 
 $sig(t)$, oder alternativ $\sigma(t)$, ist wie folgt definiert:
-\end{flushleft}
 \begin{align}
     \sigma(t)=\frac{1}{1+e^{-t}}
 \end{align}
+\end{flushleft}
 
 \begin{figure}[ht]
     \centering
@@ -173,15 +181,14 @@ $sig(t)$, oder alternativ $\sigma(t)$, ist wie folgt definiert:
 Die Sigmoidfunktion eignet sich perfekt um Werte auf das Interval $\left]0,1\right[$ zu bringen.
 
 Es gilt nämlich:
-\end{flushleft}
 \begin{align}
     \lim_{x\to-\infty} \sigma(x) = 0 \\
     \lim_{x\to\infty} \sigma(x) = 1
 \end{align}
 
-\begin{flushleft}
 Die Sigmoidfunktion kann also helfen eine Lösung für das Gleichungssystem zu finden.
 \end{flushleft}
+
 \begin{figure}[ht]
     \centering
     \begin{tikzpicture}
@@ -196,6 +203,8 @@ Die Sigmoidfunktion kann also helfen eine Lösung für das Gleichungssystem zu f
     \caption{Modell mit Bias und Sigmoidfunktion}
     \label{fig:net2}
 \end{figure}
+
+\begin{flushleft}
 Das in Abbildung \ref{fig:net2} gezeigte Modell nutzt die Sigmoidfunktion um $y$ zu berechnen:
 \begin{align}
     y&=\sigma(x_1w_1+x_2w_2+b) \\
@@ -240,6 +249,7 @@ Das in Abbildung \ref{fig:net2} gezeigte Modell nutzt die Sigmoidfunktion um $y$
         w_2
     \end{pmatrix}+b\right)=\sigma(w_1+w_2+b)
 \end{align}
+
 Da $\sigma(b)=0$ nur für $b=-\infty$ gilt und ein echter Wert für $b$ gefordert wird, müssen die Gleichungen leicht verändert werden.
 \begin{align}
     \text{I:}&\quad 0\approx\sigma(b) \\
@@ -247,30 +257,38 @@ Da $\sigma(b)=0$ nur für $b=-\infty$ gilt und ein echter Wert für $b$ geforder
     \text{III:}&\quad 0\approx\sigma(w_1+b) \\
     \text{IIII:}&\quad 1\approx\sigma(w_1+w_2+b)
 \end{align}
-Anhand der Abbildung \ref{fig:sigplot} lässt sich erkennen, dass:
+
+Anhand von der Abbildung \ref{fig:sigplot} lässt sich erkennen, dass:
 \begin{align}
     \sigma(x)\approx0\quad \forall x< -8
 \end{align}
+
 Nimmt man sich also eine beliebige Zahl, die kleiner als $-8$ ist, beispielsweise $-10$, muss gelten:
 \begin{align}
-    w_2+b\leq-10,&\quad\text{da}\quad\sigma(x)\approx 0\quad\forall x\leq -10 \\
-    w_1+b\leq-10,&\quad\text{da}\quad\sigma(x)\approx 0\quad\forall x\leq -10 \\
-    w_1+w_2+b\geq10,&\quad\text{da}\quad\sigma(x)\approx 1\quad\forall x\geq 10 \\
-    \Leftrightarrow\quad b\leq-30 &\quad\land\quad \\
-    ((w_2=20 &\quad\land\quad w_1=-10-b) \\
-    \quad\lor\quad (20<w_2\leq-10-b &\quad\land\quad 10-b-w_2\leq w_1 \leq -10-b))
+    b\leq -10,&\quad\text{da}\quad\sigma(x)\approx 0\quad\forall x\leq -10 \\
+    w_2+b\leq -10,&\quad\text{da}\quad\sigma(x)\approx 0\quad\forall x\leq -10 \\
+    w_1+b\leq -10,&\quad\text{da}\quad\sigma(x)\approx 0\quad\forall x\leq -10 \\
+    w_1+w_2+b\geq 10,&\quad\text{da}\quad\sigma(x)\approx 1\quad\forall x\geq 10
 \end{align}
-Relevant ist hier nur die erste Lösung:
+
+Dieses System von Ungleichungen hat unendlich viele Lösungen:
 \begin{align}
-    b\leq-30 \quad\land\quad w_2=20 \quad\land\quad w_1=-10-b
+    w_2=20,\quad b\leq -30,\quad w_1=-10-b
 \end{align}
-Eine mögliche Lösung ist also:
+
+Hier ist jedoch nur eine relevant:
 \begin{align}
-    b=-30,\quad w_2=20,\quad w_1=20 \\
-    \sigma(20-30)=\sigma(-10)=\frac{1}{1+e^{10}}\approx 0 \\
-    \sigma(20-30)=\sigma(-10)=\frac{1}{1+e^{10}}\approx 0 \\
-    \sigma(20+20-30)=\sigma(10)=\frac{1}{1+e^{\frac{1}{10}}}\approx 1
+    w_2=20,\quad b=-30,\quad w_1=20
 \end{align}
+
+Für diese Lösung gilt also:
+\begin{align}
+    \sigma(-30)&=\frac{1}{1+e^{30}}\approx 0 \\
+    \sigma(20-30)&=\sigma(-10)=\frac{1}{1+e^{10}}\approx 0 \\
+    \sigma(20-30)&=\sigma(-10)=\frac{1}{1+e^{10}}\approx 0 \\
+    \sigma(20+20-30)&=\sigma(10)=\frac{1}{1+e^{\frac{1}{10}}}\approx 1
+\end{align}
+
 Somit ist eine Lösung des Modells:
 \begin{align}
     y&=\sigma\left(\begin{pmatrix}
@@ -282,9 +300,11 @@ Somit ist eine Lösung des Modells:
         20
     \end{pmatrix}-30\right)
 \end{align}
+\end{flushleft}
 
 \section{ODER-Operation}
-Grundsätzlich ist das Modell der ODER-Operation gleich, dem in Abbildung \ref{fig:net2} gezeigten Modell.
+\begin{flushleft}
+Grundsätzlich ist das Modell der ODER-Operation, gleich dem in Abbildung \ref{fig:net2} gezeigten Modell.
 
 Somit gilt also auch:
 \begin{align}
@@ -297,6 +317,7 @@ Somit gilt also auch:
         w_2
     \end{pmatrix}+b\right)
 \end{align}
+
 Es ergeben sich die folgenden Gleichungen:
 \begin{align}
     \text{I:}&\quad 0\approx\sigma(b) \\
@@ -304,16 +325,20 @@ Es ergeben sich die folgenden Gleichungen:
     \text{III:}&\quad 1\approx\sigma(w_1+b) \\
     \text{IIII:}&\quad 1\approx\sigma(w_1+w_2+b)
 \end{align}
-Wenn man der vorherigen Annahme, dass $\sigma(-10)\approx 0,\sigma(10)\approx 1$ gilt folgt, sind hier die passenden Ungleichungen:
+
+Wenn man der vorherigen Annahme, dass $\sigma(-10)\approx 0,\sigma(10)\approx 1$ gilt, folgt sind hier die passenden Ungleichungen:
 \begin{align}
+    b\leq -10,&\quad\text{da}\quad\sigma(x)\approx 0\quad\forall x\leq -10 \\
     w_2+b\geq 10,&\quad\text{da}\quad\sigma(x)\approx 1\quad\forall x\geq 10 \\
     w_1+b\geq 10,&\quad\text{da}\quad\sigma(x)\approx 1\quad\forall x\geq 10 \\
     w_1+w_2+b\geq10,&\quad\text{da}\quad\sigma(x)\approx 1\quad\forall x\geq 10
 \end{align}
-Eine mögliche Lösung ist:
+
+Wie auch beim Modell der UND-Operation, gibt es hier unendlich viele Lösungen:
 \begin{align}
-    b\leq 10 \quad\land\quad w_2\geq 10-b \quad\land\quad w_1\geq 10-b
+    b=-10,\quad w_2=20,\quad w_1\geq 20
 \end{align}
+
 Also gelten die Gleichungen für beispielsweise:
 \begin{align}
     b=-10,&\quad w_2=20,\quad w_1=20 \\
@@ -322,7 +347,8 @@ Also gelten die Gleichungen für beispielsweise:
     \text{III:}&\quad 1\approx\sigma(10) \\
     \text{IIII:}&\quad 1\approx\sigma(30)
 \end{align}
-Die ODER-Operation kann also durch die folgende Funktion $y$ in Abhängigkeit von $x_1$ und $x_2$ zu berechnen:
+
+Die ODER-Operation kann also durch die folgende Funktion $y$ in Abhängigkeit von $x_1$ und $x_2$ modelliert werden:
 \begin{align}
     y&=\sigma\left(\begin{pmatrix}
         x_1 \\
@@ -333,3 +359,4 @@ Die ODER-Operation kann also durch die folgende Funktion $y$ in Abhängigkeit vo
         20
     \end{pmatrix}-10\right)
 \end{align}
+\end{flushleft}
