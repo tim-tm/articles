@@ -658,6 +658,7 @@ Das Ergebnis der Multiplikation ist also der Vektor $\vec{s}$:
 \end{flushleft}
 
 \subsection{Zweistufige Prozesse}
+\label{subsec:2proc}
 \begin{flushleft}
 Beispielsweise können verschiedene Eissorten aus Milch $M$, Zucker $Z$ und Früchten $F$ produziert werden.
 Bei der Herstellung werden jedoch erst die Zwischenprodukte $S_1$ und $S_2$ produziert, bevor die Endprodukte $E_1$ und $E_2$ produziert werden können.
@@ -794,5 +795,230 @@ Inverse Matrizen sind demnach sehr nützlich um Matrizengleichungen zu lösen:
     \quad (A^{-1} \cdot A=E) \\
     E \cdot B&=A^{-1} \cdot C \\
     B&=A^{-1} \cdot C
+\end{align}
+\end{flushleft}
+
+\subsection{Austauschprozesse}
+\begin{flushleft}
+Hier ein Beispiel zu einem Wildreservat mit drei Tränken $A$, $B$ und $C$:
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+    \node[shape=circle,draw=black] (1) at (0,0) {$A$};
+    \node[shape=circle,draw=black] (2) at (4,0) {$B$};
+    \node[shape=circle,draw=black] (3) at (2,-3) {$C$};
+
+    \path [->] (1)
+            edge [loop above] node
+            {$0.5$} (1);
+    \path [transform canvas={yshift=0.1cm},->] (1)
+            edge [above] node
+            {$0.2$} (2);
+    \path [transform canvas={xshift=-0.1cm,yshift=-0.1cm},->] (1)
+            edge [below left] node
+            {$0.3$} (3);
+    \path [->] (2)
+            edge [loop above] node
+            {$0.5$} (2);
+    \path [transform canvas={yshift=-0.1cm},->] (2)
+            edge [below] node
+            {$0.2$} (1);
+    \path [transform canvas={xshift=-0.1cm,yshift=0.1cm},->] (2)
+            edge [above left] node
+            {$0.3$} (3);
+    \path [->] (3)
+            edge [loop below] node
+            {$0.1$} (3);
+    \path [transform canvas={xshift=0.1cm,yshift=-0.1cm},->] (3)
+            edge [below right] node
+            {$0.1$} (2);
+    \path [transform canvas={xshift=0.1cm,yshift=0.1cm},->] (3)
+            edge [above right] node
+            {$0.8$} (1);
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+Der Prozess kann mit der Übergangsmatrix $P$ beschrieben werden:
+\begin{align}
+    P=\begin{pmatrix}
+        0.5 & 0.2 & 0.8 \\
+        0.2 & 0.5 & 0.1 \\
+        0.3 & 0.3 & 0.1
+    \end{pmatrix}
+\end{align}
+
+Hierbei ist wichtig zu beachten, dass die Ausrichtung der Matrix anders ist als bei ein- und zweistufigen Prozessen.
+
+Ausrichtung bei $P$:
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+    \node (P) at (0,0)
+        {$\begin{pmatrix}
+            0.5 & 0.2 & 0.8 \\
+            0.2 & 0.5 & 0.1 \\
+            0.3 & 0.3 & 0.1
+        \end{pmatrix}$};
+    \node (2) at (0,1.5) {von};
+    \node (A1) at (-0.8,1) {A};
+    \node (B1) at (0,1) {B};
+    \node (C1) at (0.8,1) {C};
+    \node (3) at (-2.5,0.05) {nach};
+    \node (A2) at (-1.6,-0.4) {C};
+    \node (B2) at (-1.6,0.05) {B};
+    \node (C2) at (-1.6,0.5) {A};
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}  
+Ausrichtung bei $A$ vom Beispiel aus Kapitel \ref{subsec:2proc}:
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+    \node (P) at (0,0)
+        {$\begin{pmatrix}
+            3 & 2 \\
+            1 & 1 \\
+            0 & 3
+        \end{pmatrix}$};
+    \node (2) at (0,1.5) {nach};
+    \node (A1) at (-0.25,1) {$S_1$};
+    \node (B1) at (0.25,1) {$S_2$};
+    \node (3) at (-1.8,0.05) {von};
+    \node (A2) at (-1,-0.4) {$F$};
+    \node (B2) at (-1,0.05) {$Z$};
+    \node (C2) at (-1,0.5) {$M$};
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+So lässt sich relativ leicht berechnen, wie viele Tiere am nächsten Tag an den Tränken sind, wenn am vorherigen Tag $x_1=1000$ bei $A$, $x_2=1000$ bei $B$ und $x_3=400$ bei $C$ sind:
+\begin{align}
+    P&\cdot\vec{x} \\
+    \begin{pmatrix}
+        0.5 & 0.2 & 0.8 \\
+        0.2 & 0.5 & 0.1 \\
+        0.3 & 0.3 & 0.1
+    \end{pmatrix}\cdot
+    \begin{pmatrix}
+        1000 \\
+        1000 \\
+        400
+    \end{pmatrix}&=
+    \begin{pmatrix}
+        1020 \\
+        740 \\
+        640
+    \end{pmatrix}
+\end{align}
+
+Bei diesem Prozess ist die Spaltensumme der Übergangsmatrix immer $1$, daher verändert sich die Gesamtanzahl der Tiere nicht.
+\begin{align}
+    0.5+0.2+0.3=1 \\
+    0.2+0.5+0.3=1 \\
+    0.8+0.1+0.1=1
+\end{align}
+
+Da die Elemente von $P$ auch als Wahrscheinlichkeiten interpretiert werden können, ist $P$ eine stochastische Matrix.
+
+Eine Matrix $A$ gilt als stochastisch, wenn:
+\begin{itemize}
+    \item {
+        sie quadratisch ist,
+    }
+    \item {
+        für jedes ihrer Elemente $a_{ij}$, $a_{ij} \in [0,1]$ gilt und
+    }
+    \item {
+        die Summe der Elemente in jeder Spalte $1$ ist.
+    }
+\end{itemize}
+
+Besonders interessant an Austauschprozessen ist die langfristige Entwicklung.
+Verwendet man immer dieselbe Matrix $P$, spricht man von einer Markoff'schen Kette.
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+    \node (0) at (0,1)
+            {0. Tag (Start)};
+    \node (p0) at (0,0)
+            {$\vec{x}=\begin{pmatrix} 1000 \\ 1000 \\ 400 \end{pmatrix}$};
+    \node (1) at (5,1)
+            {1. Tag};
+    \node (p1) at (5,0)
+            {$P\cdot\begin{pmatrix}
+                1000 \\
+                1000 \\
+                400
+            \end{pmatrix}=
+            \begin{pmatrix}
+                1020 \\
+                740 \\
+                640
+            \end{pmatrix}$};
+    \node (2) at (0,-2)
+            {2. Tag};
+    \node (p2) at (0,-3)
+            {$P\cdot\begin{pmatrix}
+                1020 \\
+                740 \\
+                640
+            \end{pmatrix}=
+            \begin{pmatrix}
+                1170 \\
+                638 \\
+                592
+            \end{pmatrix}$};
+    \node (3) at (5,-2)
+            {3. Tag};
+    \node (p3) at (5,-3)
+            {$P\cdot\begin{pmatrix}
+                1170 \\
+                638 \\
+                592
+            \end{pmatrix}=
+            \begin{pmatrix}
+                1186 \\
+                612 \\
+                602
+            \end{pmatrix}$};
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+Anstatt die Verteilung am 3. Tag schrittweise zu berechnen, kann die Verteilung auch direkt mit $P^3\cdot\vec{x}$ berechnet werden.
+Für die Verteilung $\vec{v}_n$ am $n$-ten Tag gilt also:
+\begin{align}
+    \vec{v}_n=P^n\cdot\vec{x}
+\end{align}
+
+Die Verteilung strebt eine stabile Verteilung $\vec{g}=\begin{pmatrix} 1200 \\ 600 \\ 600 \end{pmatrix}$ an, die auch Gleichgewichtsverteilung genannt wird.
+
+Zu der Matrix $P$ gehört eine Grenzmatrix $G$:
+\begin{align}
+    G&=\lim_{k\to\infty} P^k \\
+    G&=\begin{pmatrix}
+        0.5 & 0.5 & 0.5 \\
+        0.25 & 0.25 & 0.25 \\
+        0.25 & 0.25 & 0.25
+    \end{pmatrix}
+\end{align}
+
+Außerdem kann ein Fixvektor $\vec{g}$ zu $P$ bestimmt werden:
+\begin{align}
+    P\cdot\vec{g}&=\vec{g} \\
+    P\cdot\begin{pmatrix} g_1 \\ g_2 \\ g_3 \end{pmatrix}&=\begin{pmatrix} g_1 \\ g_2 \\ g_3 \end{pmatrix}
+\end{align}
+
+Es gibt unendlich viele Lösungen, da $g_1=2g_3$ und $g_2=g_3$.
+
+Für $g_3=t$ gilt also:
+\begin{align}
+    \vec{g}_t=t\cdot\begin{pmatrix} 2 \\ 1 \\ 1 \end{pmatrix}
 \end{align}
 \end{flushleft}
