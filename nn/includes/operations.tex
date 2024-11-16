@@ -1,0 +1,75 @@
+\chapter{Bitweise Operationen}
+Eine bitweise Operation kann auf einen Bit oder eine Kette von Bits angewandt werden.
+Je nach Operation können durch bitweise Operationen, Bitketten beispielsweise umgekehrt werden.
+
+In den folgenden Abbildungen steht $x$ bzw. $x_1$, $x_2$ für die Bits auf die, die jeweilige Operation angewandt werden soll und $y$ für das Ergebnis.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        x & y \\
+        \hline
+        0 & 1 \\
+        \hline
+        1 & 0 \\
+        \hline
+    \end{tabular}
+    \caption{NICHT-Operation}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        $x_1$ & $x_2$ & y \\
+        \hline
+        0 & 0 & 0 \\
+        \hline
+        0 & 1 & 0 \\
+        \hline
+        1 & 0 & 0 \\
+        \hline
+        1 & 1 & 1 \\
+        \hline
+    \end{tabular}
+    \caption{UND-Operation}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        $x_1$ & $x_2$ & y \\
+        \hline
+        0 & 0 & 0 \\
+        \hline
+        0 & 1 & 1 \\
+        \hline
+        1 & 0 & 1 \\
+        \hline
+        1 & 1 & 1 \\
+        \hline
+    \end{tabular}
+    \caption{ODER-Operation}
+    \label{fig:or}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        $x_1$ & $x_2$ & y \\
+        \hline
+        0 & 0 & 0 \\
+        \hline
+        0 & 1 & 1 \\
+        \hline
+        1 & 0 & 1 \\
+        \hline
+        1 & 1 & 0 \\
+        \hline
+    \end{tabular}
+    \caption{XOR-Operation}
+\end{figure}
+
