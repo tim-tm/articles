@@ -1037,3 +1037,266 @@ Der Fixvektor $\vec{g}_{600}$ ist also:
     \vec{g}&=\begin{pmatrix} 1200 \\ 600 \\ 600 \end{pmatrix}
 \end{align}
 \end{flushleft}
+
+\subsection{Populationsentwicklungen}
+\begin{flushleft}
+Populationsentwicklungen sind ähnlich zu Austauschprozessen.
+Die Übergangsmatrix ist jedoch keine stochastische Matrix, demnach sind die Spaltensummen nicht $1$.
+
+Hier ein Beispiel bei dem monatlich $25\%$ der Eier $E$ zu Larven $L$ wachsen,
+von diesen Larven $L$ wachsen monatlich $50\%$ zu Insekten $I$,
+jedes Insekt $I$ legt monatlich acht Eier $E$:
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+    \node[shape=circle,draw=black] (E) at (0,0) {$E$};
+    \node[shape=circle,draw=black] (L) at (0,-1.5) {$L$};
+    \node[shape=circle,draw=black] (I) at (0,-3) {$I$};
+
+    \path [->] (E) edge [left] node {$0.25$} (L);
+    \path [->] (L) edge [left] node {$0.5$} (I);
+    \path [->] (I) edge [bend right,right] node {$8$} (E);
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}
+    \node (A) at (0,0)
+        {$\begin{pmatrix}
+            0    & 0   & 8 \\
+            0.25 & 0   & 0 \\
+            0    & 0.5 & 0
+        \end{pmatrix}$};
+    \node (2) at (0,1.5) {von};
+    \node (A1) at (-0.7,1) {E};
+    \node (B1) at (0.2,1) {L};
+    \node (C1) at (0.8,1) {I};
+    \node (3) at (-2.5,0.05) {nach};
+    \node (A2) at (-1.6,-0.4) {I};
+    \node (B2) at (-1.6,0.05) {L};
+    \node (C2) at (-1.6,0.5) {E};
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+Die Übergangsmatrix $A$ des Modells ist also:
+\begin{align}
+    A=\begin{pmatrix}
+        0    & 0   & 8 \\
+        0.25 & 0   & 0 \\
+        0    & 0.5 & 0
+    \end{pmatrix}
+\end{align}
+
+Die Startpopulation in diesem Modell wird mit $\vec{p}_1$ dargestellt:
+\begin{align}
+    \vec{p}_1=\begin{pmatrix} 120 \\ 40 \\ 24 \end{pmatrix}
+\end{align}
+
+Demnach beträgt die Population zum Anfang des 2. Monats:
+\begin{align}
+    \vec{p}_2=A\cdot\begin{pmatrix}
+        120 \\ 40 \\ 24
+    \end{pmatrix}=\begin{pmatrix}
+        192 \\ 30 \\ 20
+    \end{pmatrix}
+\end{align}
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=center,
+    title={Populationsentwicklung mit \\ Übergangsmatrix $A$},
+    title style={align=center},
+    xlabel={Zeit (in Monaten)},
+    ylabel={Anzahl},
+    x label style={at={(axis description cs:0.8,-0.1)},anchor=north},
+    y label style={at={(axis description cs:-0.15,0.9)},anchor=south},
+    xmin=0,xmax=12,
+    ymin=0,ymax=200,
+    xtick={0,1,2,3,4,5,6,7,8,9,10,11,12},
+    ytick={0,40,80,120,160},
+    legend style={
+        at={(1.03,0.5)},
+        anchor=west
+    }
+]
+
+\addplot[color=blue,thick] coordinates {
+    (0,120) (1,192) (2,160)
+    (3,120) (4,192) (5,160)
+    (6,120) (7,192) (8,160)
+    (9,120) (10,192) (11,160)
+    (12,120)
+};
+\addlegendentry{Eier}
+
+\addplot[color=red,thick] coordinates {
+    (0,40) (1,30) (2,48)
+    (3,40) (4,30) (5,48)
+    (6,40) (7,30) (8,48)
+    (9,40) (10,30) (11,48)
+    (12,40)
+};
+\addlegendentry{Larven}
+
+\addplot[color=black,thick] coordinates {
+    (0,24) (1,20) (2,15)
+    (3,24) (4,20) (5,15)
+    (6,24) (7,20) (8,15)
+    (9,24) (10,20) (11,15)
+    (12,24)
+};
+\addlegendentry{Insekten}
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+An dem Graphen sieht man relativ gut, dass sich die Populationen zyklisch entwickeln.
+
+Eine quadratische Matrix $A$ ist zyklisch, wenn ein $n\in\mathbb{N}$ existiert, für das $A^n=E$ gilt.
+In diesem Beispiel gilt das für $n=3$:
+\begin{align}
+    \vec{p}_4=A^3\cdot\begin{pmatrix}
+        120 \\ 40 \\ 24
+    \end{pmatrix}=
+    \begin{pmatrix}
+        120 \\ 40 \\ 24
+    \end{pmatrix}
+\end{align}
+
+Die Entwicklung verläuft anders, wenn ein Insekt nur noch vier Eier legen kann.
+Diese Situation wird durch die Übergangsmatrix $B$ modelliert:
+\begin{align}
+    B=\begin{pmatrix}
+        0    & 0   & 4 \\
+        0.25 & 0   & 0 \\
+        0    & 0.5 & 0
+    \end{pmatrix}
+\end{align}
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=center,
+    title={Populationsentwicklung mit \\ Übergangsmatrix $B$},
+    title style={align=center},
+    xlabel={Zeit (in Monaten)},
+    ylabel={Anzahl},
+    x label style={at={(axis description cs:0.8,-0.1)},anchor=north},
+    y label style={at={(axis description cs:-0.15,0.9)},anchor=south},
+    xmin=0,xmax=12,
+    ymin=0,ymax=120,
+    xtick={0,1,2,3,4,5,6,7,8,9,10,11,12},
+    ytick={0,40,80,120},
+    legend style={
+        at={(1.03,0.5)},
+        anchor=west
+    }
+]
+
+\addplot[color=blue,thick] coordinates {
+    (0,120) (1,96) (2,80)
+    (3,60) (4,48) (5,40)
+    (6,30) (7,24) (8,20)
+    (9,15) (10,12) (11,10)
+    (12,7.5)
+};
+\addlegendentry{Eier}
+
+\addplot[color=red,thick] coordinates {
+    (0,40) (1,30) (2,24)
+    (3,20) (4,15) (5,12)
+    (6,10) (7,7.5) (8,6)
+    (9,5) (10,3.75) (11,3)
+    (12,2.5)
+};
+\addlegendentry{Larven}
+
+\addplot[color=black,thick] coordinates {
+    (0,24) (1,20) (2,15)
+    (3,12) (4,10) (5,7.5)
+    (6,6) (7,5) (8,3.75)
+    (9,3) (10,2.5) (11,1.875)
+    (12,1.5)
+};
+\addlegendentry{Insekten}
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+Mit $B$ als Übergangsmatrix halbiert sich die Population innerhalb von drei Monaten,
+da:
+\begin{align}
+    B&=\begin{pmatrix}
+        0    & 0   & 4 \\
+        0.25 & 0   & 0 \\
+        0    & 0.5 & 0
+    \end{pmatrix} \\
+    B^3&=\begin{pmatrix}
+        0.5 & 0   & 0 \\
+        0   & 0.5 & 0 \\
+        0   & 0   & 0.5
+    \end{pmatrix} \\
+    B^6&=\begin{pmatrix}
+        0.25 & 0   & 0 \\
+        0    & 0.25 & 0 \\
+        0    & 0    & 0.25
+    \end{pmatrix}
+\end{align}
+
+Allgemein gilt für Prozesse dieser Art die Übergangsmatrix 
+$
+U=\begin{pmatrix}
+    0 & 0 & v \\
+    a & 0 & 0 \\
+    0 & b & 0
+\end{pmatrix}
+$
+, $v$ steht für die Vermehrungsrate, $a$ und $b$ jeweils für die Überlebensraten.
+
+Die Übergangsmatrix $U$ kann nur einer Population zugeordnet werden, wenn $v>0$ ist und $a,b\in]0,1]$ sind.
+
+Besonders relevant ist $U^3$:
+\begin{align}   
+    U^3=\begin{pmatrix}
+        a\cdot b\cdot v & 0 & 0 \\
+        0 & a\cdot b\cdot v & 0 \\
+        0 & 0 & a\cdot b\cdot v
+    \end{pmatrix}
+\end{align}
+
+Hieraus lässt sich schließen, dass folgendes gilt:
+\[
+    \text{Wenn}
+\begin{cases}
+    a\cdot b\cdot v < 1,& \text{ist, stribt die Population aus.} \\
+    a\cdot b\cdot v = 1,& \text{ist, entwickelt sich die Population zyklisch.} \\
+    a\cdot b\cdot v > 1,& \text{ist, wächst die Population.}
+\end{cases}
+\]
+
+Dieses Verhalten lässt sich auch gut an den Übergangsmatrizen $A$ und $B$ erkennen.
+
+Für $A$ gilt:
+\begin{align}
+    a\cdot b\cdot v&=0.25\cdot 0.5\cdot 8=1 \\
+    A^3&=1\cdot E=E
+\end{align}
+
+Für $B$ gilt:
+\begin{align}
+    a\cdot b\cdot v&=0.25\cdot 0.5\cdot 4=0.5 \\
+    B^3&=0.5\cdot E
+\end{align}
+
+Demnach entwickelt sich die Population, die durch $A$ beschrieben wird zyklisch
+und die durch $B$ beschriebene Population stirbt aus.
+\end{flushleft}
