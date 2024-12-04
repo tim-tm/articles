@@ -1,0 +1,38 @@
+\documentclass[a4paper]{report}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{ngerman}
+\usepackage{tikz}
+
+\begin{document}
+\chapter*{Diffie-Hellman-Schlüsselaustausch}
+\section*{Allgemein}
+\begin{center}
+\begin{tabular}{c|c|c}
+    öffentlich & Alice & Bob \\
+    \hline
+    $g\in\mathbb{P},\quad p\in\mathbb{N},\quad p<g$ &
+    $x\in\mathbb{N}$ &
+    $y\in\mathbb{N}$ \\ & & \\
+    &
+    $a=g^x \mod p$ &
+    $b=g^y \mod p$ \\
+    & $s=b^x \mod p$ & $s=a^y \mod p$
+\end{tabular}
+\end{center}
+
+\section*{Beispiel}
+\begin{center}
+\begin{tabular}{c|c|c}
+    öffentlich & Alice & Bob \\
+    \hline
+    $g=13,\quad p=9$ &
+    $x=4$ &
+    $y=3$ \\ & & \\
+    &
+    $a=13^4 \mod 9=4$ &
+    $b=13^3 \mod 9=1$ \\
+    & $s=1^4 \mod 9=1$ & $s=4^3 \mod 9=1$
+\end{tabular}
+\end{center}
+\end{document}
