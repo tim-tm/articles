@@ -1300,3 +1300,132 @@ Für $B$ gilt:
 Demnach entwickelt sich die Population, die durch $A$ beschrieben wird zyklisch
 und die durch $B$ beschriebene Population stirbt aus.
 \end{flushleft}
+
+\subsection{Affine Abbildungen}
+\subsubsection{Verschiebung}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=center,
+    title={Die Verschiebung des Punktes $P(1,1)$ zum Punkt $P'(3,1)$},
+    title style={align=center},
+    xlabel={$x_1$},
+    ylabel={$x_2$},
+    xmin=0,xmax=4,
+    ymin=0,ymax=2
+]
+
+\addplot[mark=*] coordinates {(1,1)} node[label={90:{$P$}}]{};
+\addplot[mark=*] coordinates {(3,1)} node[label={90:{$P'$}}]{};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+Diese Verschiebung kann durch diese Gleichungen dargestellt werden:
+\begin{align}
+    x_1'=x_1+2 \\
+    x_2'=x_2+0
+\end{align}
+
+Die Gleichungen lassen sich auch durch Vektoren darstellen:
+\begin{align}
+    \begin{pmatrix}
+        x_1' \\
+        x_2'
+    \end{pmatrix}=\begin{pmatrix}
+        x_1 \\
+        x_2
+    \end{pmatrix}+\begin{pmatrix}
+        2 \\
+        0
+    \end{pmatrix}
+\end{align}
+
+Allgemein gilt also:
+\begin{align}
+    \begin{pmatrix}
+        x_1' \\
+        x_2'
+    \end{pmatrix}=\begin{pmatrix}
+        x_1 \\
+        x_2
+    \end{pmatrix}+\vec{c}
+\end{align}
+
+oder:
+\begin{align}
+    \alpha\colon \vec{x'}=\vec{x}+\vec{c}
+\end{align}
+
+für eine Abbildung $\alpha$, die eine Verschiebung darstellt.
+\end{flushleft}
+
+\subsubsection{Skalierung}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=center,
+    title={Die Skalierung eines Dreiecks $ABC$ zu $A'B'C'$ zum Ursprung},
+    title style={align=center},
+    xlabel={$x_1$},
+    ylabel={$x_2$},
+    xmin=0,xmax=5,
+    ymin=0,ymax=5
+]
+
+\addplot[mark=*] coordinates {(2,1)} node[label={0:{$A$}}]{};
+\addplot[mark=*] coordinates {(1,1)} node[label={270:{$B$}}]{};
+\addplot[mark=*] coordinates {(1,2)} node[label={90:{$C$}}]{};
+\draw (axis cs:1,1) -- (axis cs:2,1);
+\draw (axis cs:1,1) -- (axis cs:1,2);
+\draw (axis cs:2,1) -- (axis cs:1,2);
+
+\addplot[mark=*] coordinates {(4,2)} node[label={0:{$A'$}}]{};
+\addplot[mark=*] coordinates {(2,2)} node[label={270:{$B'$}}]{};
+\addplot[mark=*] coordinates {(2,4)} node[label={90:{$C'$}}]{};
+\draw (axis cs:2,2) -- (axis cs:4,2);
+\draw (axis cs:2,2) -- (axis cs:2,4);
+\draw (axis cs:4,2) -- (axis cs:2,4);
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+Diese Skalierung zum Ursprung kann durch diese Gleichungen dargestellt werden:
+\begin{align}
+    x_1'=2x_1 \\
+    x_2'=2x_2
+\end{align}
+
+Die Gleichungen lassen sich auch durch Vektoren darstellen:
+\begin{align}
+    \begin{pmatrix}
+        x_1' \\
+        x_2'
+    \end{pmatrix}=2\begin{pmatrix}
+        x_1 \\
+        x_2
+    \end{pmatrix}
+\end{align}
+
+Allgemein gilt also:
+\begin{align}
+    \begin{pmatrix}
+        x_1' \\
+        x_2'
+    \end{pmatrix}=r\begin{pmatrix}
+        x_1 \\
+        x_2
+    \end{pmatrix}
+\end{align}
+
+oder:
+\begin{align}
+    \alpha\colon \vec{x'}=r\vec{x}
+\end{align}
+
+für eine Abbildung $\alpha$, die eine Skalierung zum Ursprung darstellt.
+\end{flushleft}
