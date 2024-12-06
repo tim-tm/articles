@@ -17,7 +17,7 @@
     &
     $a=g^x \mod p$ &
     $b=g^y \mod p$ \\
-    & $s=b^x \mod p$ & $s=a^y \mod p$
+    & $s_1=b^x \mod p$ & $s_2=a^y \mod p$
 \end{tabular}
 \end{center}
 
@@ -32,7 +32,18 @@
     &
     $a=13^4 \mod 9=4$ &
     $b=13^3 \mod 9=1$ \\
-    & $s=1^4 \mod 9=1$ & $s=4^3 \mod 9=1$
+    & $s_1=1^4 \mod 9=1$ & $s_2=4^3 \mod 9=1$
 \end{tabular}
 \end{center}
+
+\section*{Wieso ist $s_1=s_2$?}
+\begin{align}
+    s_1&=\left(g^y \mod p\right)^x \mod p \\
+    s_1&=\left(g^y\right)^x \mod p \\
+    s_1&=g^{yx} \mod p \\ \\
+    s_2&=\left(g^x \mod p\right)^y \mod p \\
+    s_2&=\left(g^x\right)^y \mod p \\
+    s_2&=g^{xy} \mod p \\ \\
+    s_1&=s_2
+\end{align}
 \end{document}
