@@ -4,6 +4,7 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{ngerman}
+\usepackage[hidelinks]{hyperref}
 
 \pgfplotsset{width=7cm,compat=1.18}
 
@@ -119,6 +120,8 @@ Celines Ziel ist also einen Schnittpunkt zwischen
 den Funktionen $f(x)=8$ (da $A=8$)
 und $g(x)=2^x\mod 13$ (da $g=2$ und $p=13$) zu finden.
 
+Die Funktion $h(x)=2^x$ hat nur einen Schnittpunkt mit $f(x)$.
+
 Wie man relativ gut an der folgenden Grafik erkennen kann,
 gibt es unendlich viele Schnittpunkte zwischen diesen beiden
 Funktionen. Es existieren also unendlich viele geheime Schlüssel $a$,
@@ -164,6 +167,39 @@ Für $p=13,g=2$ und $A=8$ sind also alle
     a=3+12n,\quad n\in\mathbb{N}_0  
 \end{align}
 geheime Schlüssel von Alice.
-Es ist jedoch nicht besonders effizient den geheimen Schlüssel
-durch Ausprobieren zu finden.
+
+Bevor sich $g(x)$ das erste mal wiederholt, müssten alle ganzen Zahlen
+ausprobiert werden, für die $h(x)\leq p$ ist.
+
+In echten Anwendungen ist $p$ normalerweise mindestens
+2048-bit lang.
+Eine 2048-Bit lange Primzahl $p$ hat in etwa 617 Dezimalstellen, da
+ein Bit die Werte 0 oder 1 annehmen kann, während eine Dezimalzahl
+einen Wert zwischen 0 und 9 annehmen kann:
+\begin{align}
+    2^{2048}&=10^n \\
+    \Leftrightarrow \ln{2^{2048}}&=\ln{10^n} \\
+    \Leftrightarrow 2048\ln{2}&=n\ln{10} \\
+    \Leftrightarrow \frac{2048\ln{2}}{\ln{10}}&=n \\
+    \Leftrightarrow n &\approx 616.51 \approx 617
+\end{align}
+Die kleinste ganze Zahl mit 617 Dezimalstellen ist $10^{616}$.
+Diese Zahl ist bei weitem zu groß um in die Integer-Datentypen
+gängiger Programmiersprachen zu passen.
+Der größte Integer-Datentyp der Programmiersprache C (\textit{unsigned long long} bzw.
+\textit{unsigned long long int}) ist beispielsweise
+mindestens 64-Bit groß.
+\footnote{Quelle: \url{https://en.wikipedia.org/wiki/C_data_types},\\
+Abrufdatum: 11.01.24}
+
+Die Rede ist von mindestens 64-Bit,
+da die echte größe der Datentypen stark abhängig von der
+Platform ist, für die ein C Programm kompiliert wird.
+Da viele C-Kompiler existieren gibt es einen offenen C-Standard,
+der -- unter anderem -- diese Mindestgrößen definiert.
+
+Die größen für die Datentypen \textit{unsigned long long} und
+\textit{unsigned long long int} wurden im Standard C99 definiert.
+\footnote{Quelle: \url{https://en.wikipedia.org/wiki/C99},\\
+Abrufdatum: 11.01.24}
 \end{document}
