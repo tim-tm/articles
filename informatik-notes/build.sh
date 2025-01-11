@@ -13,7 +13,7 @@ update_bib() {
 }
 
 build_pdf() {   
-    pdflatex -aux-directory=build -output-directory=build informatiknotes.tex
+    pdflatex -aux-directory=build -output-directory=build --shell-escape informatiknotes.tex
 }
 
 set -xe
