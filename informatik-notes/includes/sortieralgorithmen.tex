@@ -1,0 +1,105 @@
+\chapter{Sortieralgorithmen}
+\begin{center}  
+\begin{tabular}{|p{3.2cm}|c|c|c|c|}
+    \hline
+    Sortieralgorithmus & Best-Case &
+    Worst-Case & Average-Case &
+    Stabil \\
+    \hline
+    Bubblesort & $O(n)$ & $O(n^2)$ & $O(n^2)$ & Ja \\
+    \hline
+    Insertionsort & $O(n)$ & $O(n^2)$ & $O(n^2)$ & Ja \\
+    \hline
+    Selectionsort & $O(n^2)$ & $O(n^2)$ & $O(n^2)$ & Nein \\
+    \hline
+    Quicksort & $O(n\log n)$ & $O(n^2)$ & $O(n\log n)$ & Nein \\
+    \hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[axis lines=middle,
+             domain=0:18,ymax=25,
+             xtick={1,10},ytick={0},
+             xlabel={Elemente},
+             ylabel={Operationen}]
+    \addplot[blue,thick] {x};
+    \addlegendentry{$O(n)$}
+    \addplot[black,thick,smooth] {x^2};
+    \addlegendentry{$O(n^2)$}
+    \addplot[black!30!green,thick,smooth] {x*log10(x)};
+    \addlegendentry{$O(n\log n)$}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\section{Bubblesort}
+\begin{center}
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,row sep=1cm,nodes={draw, minimum size=8mm},column sep=-\pgflinewidth]{
+        3 & 4 & 2 & 1 \\
+        3 & 4 & 2 & 1 \\
+        3 & 2 & 4 & 1 \\
+        3 & 2 & 1 & 4 \\
+        2 & 3 & 1 & 4 \\
+        2 & 1 & 3 & 4 \\
+        1 & 2 & 3 & 4 \\
+    };
+    \path[->]
+        (A-2-2) edge [bend left=90] node {} (A-2-3)
+        (A-3-3) edge [bend left=90] node {} (A-3-4)
+        (A-4-1) edge [bend left=90] node {} (A-4-2)
+        (A-5-2) edge [bend left=90] node {} (A-5-3)
+        (A-6-1) edge [bend left=90] node {} (A-6-2);
+\end{tikzpicture}
+\end{center}
+\pagebreak
+\begin{center}  
+\begin{lstlisting}
+// BubbleSort.java
+
+import java.util.Arrays;
+
+public class BubbleSort {
+    public static void main(String[] args) {
+        int[] ints = {3,4,2,1};
+        for (int i = 0; i < ints.length; i++) {
+            for (int j = i+1; j < ints.length; j++) {
+                if (ints[j] < ints[i]) {
+                    int tmp = ints[j];
+                    ints[j] = ints[i];
+                    ints[i] = tmp;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(ints));
+    }
+}
+\end{lstlisting}
+\end{center}
+
+\section{Insertionsort}
+\begin{center}
+\begin{lstlisting}
+// InsertionSort.java
+
+import java.util.Arrays;
+
+public class InsertionSort {
+    public static void main(String[] args) {
+        int[] ints = {3,4,2,1};
+        for (int i = 1; i < ints.length; i++) {
+            int key = ints[i];
+            int j = i-1;
+            while (j >= 0 && ints[j] > key) {
+                ints[j+1] = ints[j];
+                j--;
+            }
+            ints[j+1] = key;
+        }
+        System.out.println(Arrays.toString(ints));
+    }
+}
+\end{lstlisting}
+\end{center}
