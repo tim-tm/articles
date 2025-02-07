@@ -103,3 +103,79 @@ public class InsertionSort {
 }
 \end{lstlisting}
 \end{center}
+
+\section{Selectionsort}
+\begin{center}
+\begin{lstlisting}
+// SelectionSort.java
+
+import java.util.Arrays;
+
+public class SelectionSort {
+    public static void main(String[] args) {
+        int[] ints = {3,4,2,1};
+        for (int i = 0; i < ints.length; i++) {
+            int min = i;
+            for (int j = i+1; j < ints.length; j++) {
+                if (ints[j] < ints[min]) {
+                    min = j;
+                }
+            }
+            int tmp = ints[i];
+            ints[i] = ints[min];
+            ints[min] = tmp;
+        }
+        System.out.println(Arrays.toString(ints));
+    }
+}
+\end{lstlisting}
+\end{center}
+
+\section{Quicksort}
+\begin{center}
+\begin{lstlisting}
+// QuickSort.java
+
+import java.util.Arrays;
+
+public class QuickSort {
+    static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int i = low;
+
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                swap(arr, i, j);
+                i++;
+            }
+        }
+
+        swap(arr, i, high);  
+        return i;
+    }
+
+    static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {          
+            int pivot = partition(arr, low, high);
+
+            quickSort(arr, low, pivot - 1);
+            quickSort(arr, pivot + 1, high);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {10, 7, 8, 9, 1, 5};
+        int n = arr.length;
+      
+        quickSort(arr, 0, n - 1);
+        System.out.println(Arrays.toString(arr));
+    }
+}
+\end{lstlisting}
+\end{center}
