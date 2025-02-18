@@ -1,47 +1,79 @@
-\chapter{Automatentheorie}
+\chapter{Theoretische Informatik}
+\section{Formale Sprachen}
 \begin{flushleft}
-    Die Automatentheorie befasst sich mit formalen Sprachen und Grammatiken.
-    Es geht hauptsächlich darum diese Sprachen durch Automaten zu verarbeiten.
+Formale Sprachen sind nicht auf die Kommunikation ausgelegt,
+sie sind jedoch nützlich um formale Systeme zu definieren und anzuwenden.
+Zum Beispiel können formale Sprachen genutzt werden um den Umgang mit
+Zeichenketten präzise zu beschreiben.
+Darauf liegt auch der Fokus im Abitur.
+
+Eine formale Sprache besteht aus einem Alphabet, welches verschiedene Zeichen
+enthalten kann. Mehrere Zeichen bilden ein Wort.
 \end{flushleft}
 
-\section{Endliche Automaten}
-\subsection{Definition}
 \begin{flushleft}
-    Ein endlicher Automat wird durch so einen 5er-Tupel definiert:
-    \begin{align}
-        A=(\Sigma,Q,\delta,q_0,F)
-    \end{align}
-    \begin{enumerate}
-        \item {
-            Das Alphabet $\Sigma$ ist die Menge der erlaubten Eingabesymbole des Automaten.
-            Bei endlichen Automaten muss diese Menge $\Sigma$ endlich sein.
-        }
-        \item {
-            Die zweite Menge $Q$ des Automaten ist die Menge aller Zustände dieses Automaten.
-            Die Anzahl der Zustände des Automaten muss endlich sein.
-            Außerdem gilt $q_0 \in Q$, da $q_0$ der Startzustand des Automaten ist.
-        }
-        \item {
-            Da der Automat endlich ist gibt es auch eine Menge $F$ von Endzuständen.
-            $Q$ enthält alle Zustände, deshalb gilt $F \subseteq Q$.
-        }
-        \item {
-            Übrig bleibt die Zustandsübergangsfunktion $\delta: Q \times \Sigma \rightarrow Q$.
-            Diese Übergangsfunktion bestimmt welcher Zustand bei welcher bestimmten Eingabe folgt.
-        }
-    \end{enumerate}
-    Endliche Automaten werden in Bezug auf Determinismus unterschieden.
-    Ein Automat ist nicht deterministisch, wenn dieser von einem Zustand ausgehend, mehrere Übergänge
-    für gleiche Zeichen definiert.
+Die formale Sprache:
+\begin{align}
+    L=\left\{a^n|n\in\mathbb{N}^{>0}\right\}
+\end{align}
+
+über dem Alphabet $\Sigma=\{a\}$ enthält also alle Worte,
+die mindestens einen Buchstaben enthalten und dessen Buchstaben
+$a$ sind.
+\begin{align}
+    w_0&=a\in L \\
+    w_1&=aaaa\in L
+\end{align}
 \end{flushleft}
 
-\subsection{Beispiel}
+\section{Automatentheorie}
+\subsection{Endliche Automaten}
+\begin{flushleft}
+Endliche Automaten können genutzt werden um formale Sprachen darzustellen.
+\end{flushleft}
+
+\subsubsection{Definition}
+\begin{flushleft}
+Ein endlicher Automat wird durch so einen 5er-Tupel definiert:
+\begin{align}
+    A=(\Sigma,Q,\delta,q_0,F)
+\end{align}
+
+\begin{enumerate}
+    \item {
+        Das Alphabet $\Sigma$ ist die Menge der erlaubten Eingabesymbole des Automaten.
+        Bei endlichen Automaten muss diese Menge $\Sigma$ endlich sein.
+    }
+    \item {
+        Die zweite Menge $Q$ des Automaten ist die Menge aller Zustände dieses
+        Automaten.
+        Die Anzahl der Zustände des Automaten muss endlich sein.
+        Außerdem gilt $q_0 \in Q$, da $q_0$ der Startzustand des Automaten ist.
+    }
+    \item {
+        Da der Automat endlich ist gibt es auch eine Menge $F$ von Endzuständen.
+        $Q$ enthält alle Zustände, deshalb gilt $F \subseteq Q$.
+    }
+    \item {
+        Übrig bleibt die Zustandsübergangsfunktion
+        $\delta: Q \times \Sigma \rightarrow Q$.
+        Diese Übergangsfunktion bestimmt welcher Zustand
+        bei welcher bestimmten Eingabe folgt.
+    }
+\end{enumerate}
+
+Endliche Automaten werden in Bezug auf Determinismus unterschieden.
+Ein Automat ist nicht deterministisch, wenn dieser von einem Zustand ausgehend,
+mehrere Übergänge für gleiche Zeichen definiert.
+\end{flushleft}
+
+\subsubsection{Beispiel}
 \label{sec:Beispiel}
 \begin{flushleft}
-    Als Beispiel für einen deterministischen endlichen Automaten ist hier der Übergangsgraph eines
-    Automaten, der nur die Zahl 42 akzeptiert:
+Als Beispiel für einen deterministischen endlichen Automaten ist hier
+der Übergangsgraph eines Automaten, der nur die Zahl 42 akzeptiert:
 \end{flushleft}
-    
+
 \begin{center}
 \begin{tikzpicture}[->,
     shorten >=5pt,
@@ -56,15 +88,16 @@
 \end{center}
 
 \begin{flushleft}
-    Formal ist dieser Automat wie folgt definiert:
-    \begin{align}
-        A &= (\Sigma,Q,\delta,q_0,F) \\
-        \Sigma &= \{4,2\} \\
-        Q &= \{q_0,q_1,q_2\} \\
-        \delta &= \{\langle \langle q_0, 4 \rangle, q_1 \rangle, \langle \langle q_1, 2 \rangle, q_2 \rangle \} \\
-        F &= \{q_2\}
-    \end{align}
-    Die Zustände dieses Automaten lassen sich auch etwas anschaulicher in einer Übergangstabelle darstellen:
+Formal ist dieser Automat wie folgt definiert:
+\begin{align}
+    A &= (\Sigma,Q,\delta,q_0,F) \\
+    \Sigma &= \{4,2\} \\
+    Q &= \{q_0,q_1,q_2\} \\
+    \delta &= \{\langle \langle q_0, 4 \rangle, q_1 \rangle, \langle \langle q_1, 2 \rangle, q_2 \rangle \} \\
+    F &= \{q_2\}
+\end{align}
+
+Die Zustände dieses Automaten lassen sich auch etwas anschaulicher in einer Übergangstabelle darstellen:
 \end{flushleft}
 
 \begin{center}
@@ -81,25 +114,34 @@
 \end{tabular}
 \end{center}
 
-\subsection{Mealy Automaten}
+\subsubsection{Mealy Automaten}
 \begin{flushleft}
-    Mealy-Automaten können im Gegensatz zu normalen endlichen Automaten auch Ausgaben produzieren.
-    Ein normaler endlicher Automat (Akzeptor) kann nur Eingaben akzeptieren oder ablehnen.
-    Deshalb sind Mealy-Automaten etwas komplizierter als Akzeptoren, sie werden in der Regel durch einen 7er-Tupel definiert:
-    \begin{align}
-        A=(\Sigma,\Omega,Q,\delta,\lambda,q_0,F)
-    \end{align}
-    Neu sind hier bloß $\Omega$, die Menge der Ausgabesymbole und $\lambda: Q \times \Sigma \rightarrow \Omega$, die Ausgabefunktion.
+Mealy-Automaten können im Gegensatz zu normalen endlichen Automaten
+auch Ausgaben produzieren. Ein normaler endlicher Automat (Akzeptor)
+kann nur Eingaben akzeptieren oder ablehnen. Deshalb sind
+Mealy-Automaten etwas komplizierter als Akzeptoren,
+sie werden in der Regel durch einen 7er-Tupel definiert:
+\begin{align}
+    A=(\Sigma,\Omega,Q,\delta,\lambda,q_0,F)
+\end{align}
+
+Neu sind hier bloß $\Omega$,
+die Menge der Ausgabesymbole und
+$\lambda: Q \times \Sigma \rightarrow \Omega$, die Ausgabefunktion.
 \end{flushleft}
 
-\subsection{Potenzmengenkonstruktion}
+\subsubsection{Potenzmengenkonstruktion}
 \begin{flushleft}
-    Die Funktionsweise von deterministischen endlichen Automaten lässt sich relativ einfach erkennen.
-    Bei nicht-deterministischen endlichen Automaten ist das aber nicht so, deshalb kann man eine Potenzmengenkonstruktion 
-    durchführen um einen beliebigen nicht-deterministischen endlichen Automaten (NEA) in einen deterministischen endlichen 
-    Automaten (DEA) umzuwandeln.
-    \subsubsection{Beispiel \cite{potenzmengenkonstruktion}}
-    Dieser NEA soll jetzt beispielhaft in einen DEA umgewandelt werden:
+Die Funktionsweise von deterministischen endlichen Automaten
+lässt sich relativ einfach erkennen. Bei nicht-deterministischen
+endlichen Automaten ist das aber nicht so, deshalb kann man eine
+Potenzmengenkonstruktion durchführen um einen beliebigen
+nicht-deterministischen endlichen Automaten (NEA) in einen
+deterministischen endlichen Automaten (DEA) umzuwandeln.
+
+\textbf{Beispiel \cite{potenzmengenkonstruktion}}
+
+Dieser NEA soll jetzt beispielhaft in einen DEA umgewandelt werden:
 \end{flushleft}
     
 \begin{center}
@@ -116,23 +158,33 @@
 \end{center}
 
 \begin{flushleft}
-    Der erste Schritt ist hierbei das Bestimmen der Zustandsmenge $Q$. In diesem Beispiel gilt:
-    \begin{align}
-        Q=\{q_0,q_1\}
-    \end{align}
-    Um nun einen DEA aus diesem NEA zu machen muss die Potenzmenge dieser Zustandsmenge bestimmt werden.
-    Dieser Prozess könnte bereits aus der Mengenlehre bekannt sein, $Q'$ ist hier die Potenzmenge von $Q$:
-    \begin{align}
-        Q &=\{q_0,q_1\} \\
-        Q' &=\{\emptyset,\{q_0\},\{q_1\},\{q_0,q_1\}\}
-    \end{align}
-    Das Symbol $\emptyset$ steht für die leere Menge $\{\}$. Diese Potenzmenge $Q'$ ist die Zustandsmenge 
-    des neuen DEA. Um später einen schöneren Übergangsgraph zeichnen zu können wird diese Menge $Q'$ vereinfacht:
-    \begin{align}
-        Q'' =\{\emptyset,q_0,q_1,q_{01}\}
-    \end{align}
-    Wichtig zu beachten ist, dass $q_1 \neq q_{01}$ ist, da $q_1=\{q_1\}$ und $q_{01}=\{q_0,q_1\}$ ist.
-    Mit der Menge $Q''$ als Zustandsmenge unseres DEA, sieht der erste Entwurf des Übergangsgraphen etwa so aus:
+Der erste Schritt ist hierbei das Bestimmen der Zustandsmenge $Q$.
+In diesem Beispiel gilt:
+\begin{align}
+    Q=\{q_0,q_1\}
+\end{align}
+
+Um nun einen DEA aus diesem NEA zu machen muss die Potenzmenge
+dieser Zustandsmenge bestimmt werden. Dieser Prozess könnte
+bereits aus der Mengenlehre bekannt sein, $Q'$ ist hier die
+Potenzmenge von $Q$:
+\begin{align}
+    Q &=\{q_0,q_1\} \\
+    Q' &=\{\emptyset,\{q_0\},\{q_1\},\{q_0,q_1\}\}
+\end{align}
+
+Das Symbol $\emptyset$ steht für die leere Menge $\{\}$.
+Diese Potenzmenge $Q'$ ist die Zustandsmenge des neuen DEA.
+Um später einen schöneren Übergangsgraph zeichnen zu können
+wird diese Menge $Q'$ vereinfacht:
+\begin{align}
+    Q'' =\{\emptyset,q_0,q_1,q_{01}\}
+\end{align}
+
+Wichtig zu beachten ist, dass $q_1 \neq q_{01}$ ist,
+da $q_1=\{q_1\}$ und $q_{01}=\{q_0,q_1\}$ ist.
+Mit der Menge $Q''$ als Zustandsmenge unseres DEA,
+sieht der erste Entwurf des Übergangsgraphen etwa so aus:
 \end{flushleft}
     
 \begin{center}
@@ -148,10 +200,12 @@
 \end{center}
 
 \begin{flushleft}
-    Wir beginnen damit die Start- und Endzustände zu bestimmen. Den Startzustand (hier $q_0$) können 
-    wir einfach übernehmen. Bei den Endzuständen ist das Vorgehen etwas anders, jeder Zustand, dessen Menge 
-    einen Endzustand des NEA enthält ist ein Endzustand des DEA. In diesem Beispiel sind also $q_1$ und $q_{01}$
-    Endzustände:
+Wir beginnen damit die Start- und Endzustände zu bestimmen.
+Den Startzustand (hier $q_0$) können wir einfach übernehmen.
+Bei den Endzuständen ist das Vorgehen etwas anders,
+jeder Zustand, dessen Menge einen Endzustand des NEA enthält
+ist ein Endzustand des DEA.
+In diesem Beispiel sind also $q_1$ und $q_{01}$ Endzustände:
 \end{flushleft}
     
 \begin{center}
@@ -167,7 +221,8 @@
 \end{center}
 
 \begin{flushleft}
-    Um die Übergänge des DEA zu bestimmen, zeichnen wir zu erst die Übergangstabelle des NEA:
+Um die Übergänge des DEA zu bestimmen, zeichnen wir zu erst
+die Übergangstabelle des NEA:
 \end{flushleft}
     
 \begin{center}
@@ -185,12 +240,13 @@
 \end{center}
 
 \begin{flushleft}
-    Hier ist relativ leicht zu erkennen, dass $\{q_0,q_1\}$ der Grund für den fehlenden 
-    Determinismus des NEA ist. Genau dieser Ausdruck sollte uns jedoch aus der vereinfachten Potenzmenge 
-    $Q''$ bekannt vorkommen, $\{q_0,q_1\}=q_{01}$. Um einen DEA aus dem NEA zu machen muss man hier also bloß 
-    $\{q_0,q_1\}$ durch den neuen Zustand $q_{01}$ austauschen:
+Hier ist relativ leicht zu erkennen, dass $\{q_0,q_1\}$ der Grund für den fehlenden 
+Determinismus des NEA ist. Genau dieser Ausdruck sollte uns jedoch
+aus der vereinfachten Potenzmenge $Q''$ bekannt vorkommen,
+$\{q_0,q_1\}=q_{01}$. Um einen DEA aus dem NEA zu machen muss man hier also bloß 
+$\{q_0,q_1\}$ durch den neuen Zustand $q_{01}$ austauschen:
 \end{flushleft}
-    
+
 \begin{center}
 \begin{tabular}{|c|c|c|}
     \hline
@@ -208,10 +264,12 @@
 \end{center}
 
 \begin{flushleft}
-    Um einen kompletten DEA zu konstruieren muss jedoch noch definiert werden, wie sich der DEA bei $q_{01}$ verhält.
-    Dieses Verhalten muss aus dem NEA genommen werden. Da $q_{01}$ die Menge von $q_0$ und $q_1$ ist, kombiniert $q_{01}$
-    das Verhalten dieser beiden Zustände. Bei einem $a$ bleibt der DEA also im Zustand $q_{01}$ und bei einem $b$ wandert 
-    der DEA in den Zustand $q_1$:
+Um einen kompletten DEA zu konstruieren muss jedoch noch definiert werden,
+wie sich der DEA bei $q_{01}$ verhält. Dieses Verhalten muss aus dem NEA
+genommen werden. Da $q_{01}$ die Menge von $q_0$ und $q_1$ ist,
+kombiniert $q_{01}$ das Verhalten dieser beiden Zustände.
+Bei einem $a$ bleibt der DEA also im Zustand $q_{01}$ und bei einem $b$ wandert 
+der DEA in den Zustand $q_1$:
 \end{flushleft}
 
 \begin{center}
@@ -231,7 +289,7 @@
 \end{center}
 
 \begin{flushleft}
-    Basierend auf dieser Übergangstabelle kann man diesen Übergangsgraphen zeichnen:
+Basierend auf dieser Übergangstabelle kann man diesen Übergangsgraphen zeichnen:
 \end{flushleft}
 
 \begin{center}
@@ -254,8 +312,9 @@
 \end{center}
 
 \begin{flushleft}
-    Um diesen unordentlichen Graphen zu bereinigen kann man hier den sogenannten Papierkorbzustand $\emptyset$
-    entfernen. Die Übergangstabelle würde dann so aussehen:
+Um diesen unordentlichen Graphen zu bereinigen kann man hier
+den sogenannten Papierkorbzustand $\emptyset$ entfernen.
+Die Übergangstabelle würde dann so aussehen:
 \end{flushleft}
 
 \begin{center}
@@ -273,7 +332,7 @@
 \end{center}
 
 \begin{flushleft}   
-    Hier der übersichtliche Übergangsgraph:
+Hier der übersichtliche Übergangsgraph:
 \end{flushleft}
 
 \begin{center}
@@ -294,22 +353,30 @@
 
 \subsection{Programmierung von DEA's}
 \begin{flushleft}
-    Es gibt natürlich verschiedene Wege DEA's zu programmieren, hier gehe ich jedoch nur auf einen Weg ein,
-    der grundlegend für jeden DEA funktioniert. Dieser Weg erfordert jedoch auch abhängig von der Komplexität des DEA's
-    ein komplexeres Programm.
+Es gibt natürlich verschiedene Wege DEA's zu programmieren,
+hier gehe ich jedoch nur auf einen Weg ein, der grundlegend
+für jeden DEA funktioniert.
+Dieser Weg erfordert jedoch auch abhängig von der Komplexität des DEA's
+ein komplexeres Programm.
 \end{flushleft}
 
 \begin{flushleft}
-    Bei der Simulation eines DEA's ist es eigentlich am wichtigsten zu wissen, ob ein bestimmtes Wort von dem DEA akzeptiert oder
-    abgelehnt wird. Man fragt sich also ob der Zustand, der am Ende eines Wortes erreicht wird ein Endzustand ist.
-    Um diese Frage zu beantworten braucht man zunächst einen Weg den jetzigen Zustand zu speichern.
-    Dafür kann man einen einfachen Integer nutzen, ein bestimmter Wert des Integers steht dann also für einen bestimmten Zustand des Automaten.
+Bei der Simulation eines DEA's ist es eigentlich am
+wichtigsten zu wissen, ob ein bestimmtes Wort von dem DEA akzeptiert oder
+abgelehnt wird.
+Man fragt sich also ob der Zustand, der am Ende eines Wortes erreicht
+wird ein Endzustand ist.
+Um diese Frage zu beantworten braucht man zunächst einen Weg den jetzigen
+Zustand zu speichern.
+Dafür kann man einen einfachen Integer nutzen, ein bestimmter Wert des Integers
+steht dann also für einen bestimmten Zustand des Automaten.
 \end{flushleft}
 
 \begin{flushleft}
-    Ab hier sollte weiter anhand von einem Beispiel erklärt werden, dafür nutze ich das obrige \nameref{sec:Beispiel} eines DEA,
-    der nur das Wort $w_0=42$ akzeptiert.
-    Hier noch einmal der Übergangsgraph dieses DEA:
+Ab hier sollte weiter anhand von einem Beispiel erklärt werden,
+dafür nutze ich das obrige \nameref{sec:Beispiel} eines DEA,
+der nur das Wort $w_0=42$ akzeptiert.
+Hier noch einmal der Übergangsgraph dieses DEA:
 \end{flushleft}
 
 \begin{center}
@@ -326,22 +393,28 @@
 \end{center}
 
 \begin{flushleft}
-    Hier seine formale Definition:
-    \begin{align}
-        A &= (\Sigma,Q,\delta,q_0,F) \\
-        \Sigma &= \{4,2\} \\
-        Q &= \{q_0,q_1,q_2\} \\
-        \delta &= \{\langle \langle q_0, 4 \rangle, q_1 \rangle, \langle \langle q_1, 2 \rangle, q_2 \rangle \} \\
-        F &= \{q_2\}
-    \end{align}
-    Für dieses Beispiel sollte unser Integer im Programmcode drei verschiedene Werte annehmen können,
-    die Menge $I$ enthält diese Werte:
-    \begin{align}
-        I=\{0,1,2\}
-    \end{align}
-    Ein Wert steht immer für einen Zustand, $0$ steht hier also für $q_0$.
-    Zunächst erstellen wir die Klasse \textit{Automat}, die das Verhalten des DEA simulieren soll.
-    Die Methode \textit{isValid(word)} gibt \textit{true} oder \textit{false} zurück abhängig davon ob der Automat den String \textit{word} akzeptiert oder ablehnt:
+Hier seine formale Definition:
+\begin{align}
+    A &= (\Sigma,Q,\delta,q_0,F) \\
+    \Sigma &= \{4,2\} \\
+    Q &= \{q_0,q_1,q_2\} \\
+    \delta &= \{\langle \langle q_0, 4 \rangle, q_1 \rangle, \langle \langle q_1, 2 \rangle, q_2 \rangle \} \\
+    F &= \{q_2\}
+\end{align}
+
+Für dieses Beispiel sollte unser Integer im Programmcode
+drei verschiedene Werte annehmen können,
+die Menge $I$ enthält diese Werte:
+\begin{align}
+    I=\{0,1,2\}
+\end{align}
+
+Ein Wert steht immer für einen Zustand, $0$ steht hier also für $q_0$.
+Zunächst erstellen wir die Klasse \textit{Automat},
+die das Verhalten des DEA simulieren soll.
+Die Methode \textit{isValid(word)} gibt \textit{true}
+oder \textit{false} zurück abhängig davon ob der Automat den String
+\textit{word} akzeptiert oder ablehnt:
 \end{flushleft}
 
 \begin{center}  
@@ -360,9 +433,11 @@ public class Automat {
 \end{center}
 
 \begin{flushleft}
-    Ein Automat verarbeitet jedes Zeichen eines Wortes nacheinander, das sollte unser Programm auch so machen.
-    Es gibt natürlich verschiedene Wege dies in Java umzusetzen, ich persönlich nutze jedoch gerne foreach-Schleifen,
-    deshalb wird der String \textit{word} erst in ein char-Array umgewandelt:
+Ein Automat verarbeitet jedes Zeichen eines Wortes nacheinander,
+das sollte unser Programm auch so machen.
+Es gibt natürlich verschiedene Wege dies in Java umzusetzen,
+ich persönlich nutze jedoch gerne foreach-Schleifen,
+deshalb wird der String \textit{word} erst in ein char-Array umgewandelt:
 \end{flushleft}
 
 \begin{center}
@@ -387,8 +462,9 @@ public class Automat {
 \end{center}
 
 \begin{flushleft}
-    Jetzt geht es darum das Verhalten des Automaten zu simulieren, also erstellen wir ein switch-case Statement mit einem case für
-    jeden bekannten Wert des Integers:
+Jetzt geht es darum das Verhalten des Automaten zu simulieren,
+also erstellen wir ein switch-case Statement mit einem case für
+jeden bekannten Wert des Integers:
 \end{flushleft}
 
 \begin{center}
@@ -426,7 +502,7 @@ public class Automat {
 \end{center}
 
 \begin{flushleft}
-    Jetzt kopieren wir das Verhalten jedes Zustands:
+Jetzt kopieren wir das Verhalten jedes Zustands:
 \end{flushleft}
 
 \begin{center}
@@ -465,8 +541,10 @@ public class Automat {
 \end{center}
 
 \begin{flushleft}
-    Die Zustandsvariable wird verändert, \textit{isValid} gibt aber noch nicht aus ob der Automat akzeptiert oder nicht.
-    Dafür kann man einfach abfragen ob die Zustandsvariable den Wert 2 hat, da $q_2$ ein Endzustand ist:
+Die Zustandsvariable wird verändert, \textit{isValid}
+gibt aber noch nicht aus ob der Automat akzeptiert oder nicht.
+Dafür kann man einfach abfragen ob die Zustandsvariable den Wert 2 hat,
+da $q_2$ ein Endzustand ist:
 \end{flushleft}
 
 \begin{center}
@@ -511,7 +589,7 @@ public class Automat {
 \end{center}
 
 \begin{flushleft}
-    Hier kann die if-Abfrage vereinfacht werden: 
+Hier kann die if-Abfrage vereinfacht werden: 
 \end{flushleft}
 
 \begin{center}
@@ -552,9 +630,10 @@ public class Automat {
 \end{center}
 
 \begin{flushleft}
-    Was passiert aber nun, wenn isValid mehrmals aufgerufen wird?
-    Die Zustandsvariable muss beim zweiten Aufruf nicht unbedingt 0 (Startzustand $q_0$) sein,
-    deshalb stellen wir sicher, dass die Variable beim Aufruf von \textit{isValid} immer auf 0 gesetzt wird:
+Was passiert aber nun, wenn isValid mehrmals aufgerufen wird?
+Die Zustandsvariable muss beim zweiten Aufruf nicht unbedingt
+0 (Startzustand $q_0$) sein, deshalb stellen wir sicher, dass
+die Variable beim Aufruf von \textit{isValid} immer auf 0 gesetzt wird:
 \end{flushleft}
 
 \begin{center}
@@ -598,7 +677,8 @@ public class Automat {
 \end{center}
 
 \begin{flushleft}
-    Wenn man möchte kann man auch noch eine Methode schreiben, die den jetzigen Zustand zurück gibt:
+Wenn man möchte kann man auch noch eine Methode schreiben,
+die den jetzigen Zustand zurück gibt:
 \end{flushleft}
 
 \begin{center}
@@ -647,7 +727,7 @@ public class Automat {
 \end{center}
 
 \begin{flushleft}
-    Außerdem kann man einen kleinen Test für die \textit{isValid} Methode schreiben:
+Außerdem kann man einen kleinen Test für die \textit{isValid} Methode schreiben:
 \end{flushleft}
 
 \begin{center}
@@ -663,3 +743,17 @@ public static void main(String[] args) {
 \end{lstlisting}
 \href{https://raw.githubusercontent.com/tim-tm/articles/refs/heads/main/informatik-notes/code/Automat.java}{\textit{Unkommentierter Code}} \\
 \end{center}
+
+\section{Grammatiken}
+\begin{flushleft}
+Neben der Darstellung durch Automaten, können Sprachen auch durch Grammatiken
+beschrieben werden.
+\end{flushleft}
+
+\subsection{Definition}
+\begin{flushleft}
+Eine Grammatik $G$ wird durch ein 4er-Tupel definiert:
+\begin{align}
+    G=\left(N,T,P,S\right)
+\end{align}
+\end{flushleft}
