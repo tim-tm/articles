@@ -21,8 +21,8 @@ Die formale Sprache:
 die mindestens einen Buchstaben enthalten und dessen Buchstaben
 $a$ sind.
 \begin{align}
-    w_0&=a\in L \\
-    w_1&=aaaa\in L
+    w_0&=a,\quad w_0\in L \\
+    w_1&=aaaa,\quad w_1\in L
 \end{align}
 \end{flushleft}
 
@@ -754,6 +754,45 @@ beschrieben werden.
 \begin{flushleft}
 Eine Grammatik $G$ wird durch ein 4er-Tupel definiert:
 \begin{align}
-    G=\left(N,T,P,S\right)
+    G=\left(N,T,P,s\right)
+\end{align}
+
+\begin{enumerate}
+    \item {
+        Hier steht $N$ für die Menge der Nichtterminalsymbole.
+        In den Wörtern, die durch die Grammatik $G$ erzeugt werden
+        können, treten keine Nichtterminalsymbole auf.
+    }
+    \item {
+        Die Menge $T$ der Terminalsymbole umfasst alle Symbole, die
+        in den von der Grammatik $G$ produzierten Wörtern vorkommen können.
+    }
+    \item {
+        Die Menge $P$ enthält alle Produktionsregeln der Grammatik $G$.
+    }
+    \item {
+        Das Symbol $s$ ist das Startsymbol der Grammatik $G$.
+    }
+\end{enumerate}
+\end{flushleft}
+
+% TODO: Chomsky-Hierarchie
+
+\subsection{Beispiel}
+\begin{flushleft}
+Die Grammatik $G$ ist rechtslinear:
+\begin{align}
+    G=(&\{A,B\},\\
+    &\{0,1\},\\
+    &\{A\rightarrow 0B|\epsilon,B\rightarrow 1A|\epsilon\},\\
+    &A)
+\end{align}
+
+Diese Grammatik kann die folgenden Wörter erzeugen:
+\begin{align}
+    w_0&=0 \\
+    w_1&=01 \\
+    w_2&=010 \\
+    w_3&=0101
 \end{align}
 \end{flushleft}
