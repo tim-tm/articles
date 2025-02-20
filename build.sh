@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 for dir in ./*/
 do
@@ -6,6 +6,6 @@ do
     echo "${dir}"
 
     cd ${dir}
-    sh build.sh &
+    sh build.sh
     cd ..
 done

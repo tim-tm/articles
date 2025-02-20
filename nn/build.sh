@@ -1,7 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -xe
 
-mkdir -p build
-mkdir -p build/includes
-pdflatex -aux-directory=build -output-directory=build --shell-escape nn.tex
+latexmk -aux-directory=build -output-directory=build nn.tex
