@@ -776,7 +776,52 @@ Eine Grammatik $G$ wird durch ein 4er-Tupel definiert:
 \end{enumerate}
 \end{flushleft}
 
-% TODO: Chomsky-Hierarchie
+\subsection{Chomsky-Hierarchie}
+\begin{center}
+\begin{tikzpicture}
+    \draw[thick,black] (0,1.5) ellipse (1.5 and 0.5) node (3) {regulär};
+    \draw[thick,black] (0,1) ellipse (2 and 1) node[below=0.5 of 3] {kontextfrei};
+    \draw[thick,black] (0,0.5) ellipse (2.5 and 1.5) node[below=1.5 of 3] {kontextsensitiv};
+    \draw[thick,black] (0,0) ellipse (3 and 2) node[below=2.5 of 3] {rekursiv aufzählbar};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tabular}{c|c|p{4cm}}
+    \textbf{Grammatik} & \textbf{Sprachen} & \textbf{Regeln} \\
+    \hline
+    Typ-3 & rechts-regulär &
+    {\begin{align}
+        A&\rightarrow a \\
+        A&\rightarrow aB
+    \end{align}} \\
+    \hline
+    Typ-3 & links-regulär &
+    {\begin{align}
+        A&\rightarrow a \\
+        A&\rightarrow Ba
+    \end{align}} \\
+    \hline
+    Typ-2 & kontextfrei &
+    {\begin{align}
+        A&\rightarrow \alpha \\
+        \alpha&\in N^*,T^*
+    \end{align}} \\
+    \hline
+    Typ-1 & kontextsensitiv &
+    {\begin{align}
+        \alpha A\beta&\rightarrow\alpha\beta\gamma \\
+        \alpha,\beta,\gamma&\in N^*,T^*
+    \end{align}} \\
+    \hline
+    Typ-0 & rekursiv aufzählbar &
+    {\begin{align}
+        \gamma&\rightarrow\alpha \\
+        \alpha&\in N^*,T^* \\
+        \gamma&\in N^*,T^*, \gamma\neq\epsilon
+    \end{align}} \\
+\end{tabular}
+\end{center}
 
 \subsection{Beispiel}
 \begin{flushleft}
