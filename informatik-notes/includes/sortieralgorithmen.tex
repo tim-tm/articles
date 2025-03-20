@@ -219,6 +219,83 @@ public class InsertionSort {
 
 \section{Selectionsort}
 \begin{center}
+\begin{tabular}{r|l}
+sortiert & unsortiert \\
+&
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 4/.style={nodes={fill=cyan!25}}] {
+        3 & 4 & 2 & 1 \\
+    };
+\end{tikzpicture} \\
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 1/.style={nodes={fill=cyan!25}}] {
+        1 \\
+    };
+\end{tikzpicture} &
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 2/.style={nodes={fill=teal!25}}] {
+        4 & 2 & 3 \\
+    };
+\end{tikzpicture} \\
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 2/.style={nodes={fill=teal!25}}] {
+        1 & 2 \\
+    };
+\end{tikzpicture} &
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 2/.style={nodes={fill=magenta!25}}] {
+        4 & 3 \\
+    };
+\end{tikzpicture} \\
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 3/.style={nodes={fill=magenta!25}}] {
+        1 & 2 & 3 \\
+    };
+\end{tikzpicture} &
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth] {
+        4 \\
+    };
+\end{tikzpicture} \\
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth] {
+        1 & 2 & 3 & 4\\
+    };
+\end{tikzpicture} & \\
+\end{tabular}
+\end{center}
+
+\begin{center}
 \begin{lstlisting}
 // SelectionSort.java
 
