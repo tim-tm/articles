@@ -35,6 +35,7 @@
 \end{center}
 
 \section{Bubblesort}
+\begin{center}  
 \begin{tabular}{c|c|c}
 1. Durchlauf & 2. Durchlauf & 3. Durchlauf \\
 \begin{tikzpicture}
@@ -86,6 +87,7 @@
         (A-1-2) node [below=12pt] {$j$};
 \end{tikzpicture}
 \end{tabular}
+\end{center}
 
 \begin{center}  
 \begin{lstlisting}
@@ -113,6 +115,83 @@ public class BubbleSort {
 \end{center}
 
 \section{Insertionsort}
+\begin{center}
+\begin{tabular}{r|l}
+sortiert & unsortiert \\
+&
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth] {
+        3 & 4 & 2 & 1 \\
+    };
+\end{tikzpicture} \\
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth] {
+        3 \\
+    };
+\end{tikzpicture} &
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 1/.style={nodes={fill=teal!25}}]{
+        4 & 2 & 1 \\
+    };
+\end{tikzpicture} \\
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 2/.style={nodes={fill=teal!25}}]{
+        3 & 4\\
+    };
+\end{tikzpicture} &
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 1/.style={nodes={fill=magenta!25}}]{
+        2 & 1 \\
+    };
+\end{tikzpicture} \\
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 1/.style={nodes={fill=magenta!25}}]{
+        2 & 3 & 4\\
+    };
+\end{tikzpicture} &
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 1/.style={nodes={fill=cyan!25}}]{
+        1 \\
+    };
+\end{tikzpicture} \\
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 1/.style={nodes={fill=cyan!25}}]{
+        1 & 2 & 3 & 4\\
+    };
+\end{tikzpicture} & \\
+\end{tabular}
+\end{center}
+
 \begin{center}
 \begin{lstlisting}
 // InsertionSort.java
