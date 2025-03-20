@@ -324,6 +324,98 @@ public class SelectionSort {
 
 \section{Quicksort}
 \begin{center}
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 5/.style={nodes={fill=cyan!25}}] {
+        4 & 3 & 1 & 5 & 2 \\
+    };
+\end{tikzpicture}
+
+\begin{tabular}{c c c}
+$<p$ & Pivot $p$ & $>p$ \\
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth] {
+        1 \\
+    };
+\end{tikzpicture} &
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 1/.style={nodes={fill=cyan!25}}] {
+        2 \\
+    };
+\end{tikzpicture} &
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 2/.style={nodes={fill=magenta!25}}] {
+        4 & 3 & 5 \\
+    };
+\end{tikzpicture} \\
+& & \begin{tabular}{c c}
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 1/.style={nodes={fill=magenta!25}}] {
+        3 \\
+    };
+\end{tikzpicture} &
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 2/.style={nodes={fill=teal!25}}] {
+        4 & 5 \\
+    };
+\end{tikzpicture} \\
+& \begin{tabular}{c c}
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth] {
+        4 \\
+    };
+\end{tikzpicture} &
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth,
+                 column 1/.style={nodes={fill=teal!25}}] {
+        5 \\
+    };
+\end{tikzpicture}
+\end{tabular}
+\end{tabular}
+\end{tabular}
+\end{center}
+
+\begin{center}    
+\begin{tikzpicture}
+    \matrix (A) [matrix of nodes,
+                 row sep=2cm,
+                 nodes={draw, minimum size=8mm},
+                 column sep=-\pgflinewidth] {
+        1 & 2 & 3 & 4 & 5 \\
+    };
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
 \begin{lstlisting}
 // QuickSort.java
 
