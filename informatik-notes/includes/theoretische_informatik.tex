@@ -12,14 +12,14 @@ enthalten kann. Mehrere Zeichen bilden ein Wort.
 \end{flushleft}
 
 \begin{flushleft}
-Die formale Sprache:
+Die formale Sprache
 \begin{align}
     L=\left\{a^n|n\in\mathbb{N}^{>0}\right\}
 \end{align}
 
 über dem Alphabet $\Sigma=\{a\}$ enthält also alle Worte,
 die mindestens einen Buchstaben enthalten und dessen Buchstaben
-$a$ sind.
+nur $a$ enthalten.
 \begin{align}
     w_0&=a,\quad w_0\in L \\
     w_1&=aaaa,\quad w_1\in L
@@ -34,7 +34,7 @@ Endliche Automaten können genutzt werden um formale Sprachen darzustellen.
 
 \subsubsection{Definition}
 \begin{flushleft}
-Ein endlicher Automat wird durch so einen 5er-Tupel definiert:
+Ein endlicher Automat $A$ wird durch einen 5er-Tupel definiert:
 \begin{align}
     A=(\Sigma,Q,\delta,q_0,F)
 \end{align}
@@ -119,8 +119,8 @@ Die Zustände dieses Automaten lassen sich auch etwas anschaulicher in einer Üb
 Mealy-Automaten können im Gegensatz zu normalen endlichen Automaten
 auch Ausgaben produzieren. Ein normaler endlicher Automat (Akzeptor)
 kann nur Eingaben akzeptieren oder ablehnen. Deshalb sind
-Mealy-Automaten etwas komplizierter als Akzeptoren,
-sie werden in der Regel durch einen 7er-Tupel definiert:
+Mealy-Automaten etwas komplizierter als Akzeptoren.
+Sie werden in der Regel durch einen 7er-Tupel definiert:
 \begin{align}
     A=(\Sigma,\Omega,Q,\delta,\lambda,q_0,F)
 \end{align}
@@ -134,14 +134,15 @@ $\lambda: Q \times \Sigma \rightarrow \Omega$, die Ausgabefunktion.
 \begin{flushleft}
 Die Funktionsweise von deterministischen endlichen Automaten
 lässt sich relativ einfach erkennen. Bei nicht-deterministischen
-endlichen Automaten ist das aber nicht so, deshalb kann man eine
-Potenzmengenkonstruktion durchführen um einen beliebigen
+endlichen Automaten ist das aber nicht so. Um einen beliebigen
 nicht-deterministischen endlichen Automaten (NEA) in einen
-deterministischen endlichen Automaten (DEA) umzuwandeln.
+deterministischen endlichen Automaten (DEA) umzuwandeln kann
+eine Potenzmengenkonstruktion durchgeführt werden.
+\end{flushleft}
 
+\begin{flushleft}
 \textbf{Beispiel \cite{potenzmengenkonstruktion}}
-
-Dieser NEA soll jetzt beispielhaft in einen DEA umgewandelt werden:
+Der folgende NEA soll jetzt beispielhaft in einen DEA umgewandelt werden:
 \end{flushleft}
     
 \begin{center}
@@ -158,7 +159,7 @@ Dieser NEA soll jetzt beispielhaft in einen DEA umgewandelt werden:
 \end{center}
 
 \begin{flushleft}
-Der erste Schritt ist hierbei das Bestimmen der Zustandsmenge $Q$.
+Der erste Schritt liegt hierbei in der Bestimmung der Zustandsmenge $Q$.
 In diesem Beispiel gilt:
 \begin{align}
     Q=\{q_0,q_1\}
@@ -181,7 +182,7 @@ wird diese Menge $Q'$ vereinfacht:
     Q'' =\{\emptyset,q_0,q_1,q_{01}\}
 \end{align}
 
-Wichtig zu beachten ist, dass $q_1 \neq q_{01}$ ist,
+Es ist wichtig zu beachten, dass $q_1 \neq q_{01}$,
 da $q_1=\{q_1\}$ und $q_{01}=\{q_0,q_1\}$ ist.
 Mit der Menge $Q''$ als Zustandsmenge unseres DEA,
 sieht der erste Entwurf des Übergangsgraphen etwa so aus:
@@ -202,8 +203,8 @@ sieht der erste Entwurf des Übergangsgraphen etwa so aus:
 \begin{flushleft}
 Wir beginnen damit die Start- und Endzustände zu bestimmen.
 Den Startzustand (hier $q_0$) können wir einfach übernehmen.
-Bei den Endzuständen ist das Vorgehen etwas anders,
-jeder Zustand, dessen Menge einen Endzustand des NEA enthält
+Bei den Endzuständen ist das Vorgehen etwas anders.
+Jeder Zustand, dessen Menge einen Endzustand des NEA enthält
 ist ein Endzustand des DEA.
 In diesem Beispiel sind also $q_1$ und $q_{01}$ Endzustände:
 \end{flushleft}
@@ -221,7 +222,7 @@ In diesem Beispiel sind also $q_1$ und $q_{01}$ Endzustände:
 \end{center}
 
 \begin{flushleft}
-Um die Übergänge des DEA zu bestimmen, zeichnen wir zu erst
+Um die Übergänge des DEA zu bestimmen, zeichnen wir zuerst
 die Übergangstabelle des NEA:
 \end{flushleft}
     
@@ -373,8 +374,8 @@ steht dann also für einen bestimmten Zustand des Automaten.
 \end{flushleft}
 
 \begin{flushleft}
-Ab hier sollte weiter anhand von einem Beispiel erklärt werden,
-dafür nutze ich das obrige \nameref{sec:Beispiel} eines DEA,
+Ab hier sollte weiter anhand von einem Beispiel erklärt werden.
+Daher nutze ich das obige \nameref{sec:Beispiel} eines DEA,
 der nur das Wort $w_0=42$ akzeptiert.
 Hier noch einmal der Übergangsgraph dieses DEA:
 \end{flushleft}
@@ -413,8 +414,8 @@ Ein Wert steht immer für einen Zustand, $0$ steht hier also für $q_0$.
 Zunächst erstellen wir die Klasse \textit{Automat},
 die das Verhalten des DEA simulieren soll.
 Die Methode \textit{isValid(word)} gibt \textit{true}
-oder \textit{false} zurück abhängig davon ob der Automat den String
-\textit{word} akzeptiert oder ablehnt:
+zurück, wenn der Automat den String
+\textit{word} akzeptiert, andernfalls \textit{false}:
 \end{flushleft}
 
 \begin{center}  
@@ -542,7 +543,7 @@ public class Automat {
 
 \begin{flushleft}
 Die Zustandsvariable wird verändert, \textit{isValid}
-gibt aber noch nicht aus ob der Automat akzeptiert oder nicht.
+gibt aber noch nicht aus, ob der Automat akzeptiert oder nicht.
 Dafür kann man einfach abfragen ob die Zustandsvariable den Wert 2 hat,
 da $q_2$ ein Endzustand ist:
 \end{flushleft}
