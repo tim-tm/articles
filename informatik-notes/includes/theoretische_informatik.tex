@@ -114,22 +114,6 @@ Die Zustände dieses Automaten lassen sich auch etwas anschaulicher in einer Üb
 \end{tabular}
 \end{center}
 
-\subsubsection{Mealy Automaten}
-\begin{flushleft}
-Mealy-Automaten können im Gegensatz zu normalen endlichen Automaten
-auch Ausgaben produzieren. Ein normaler endlicher Automat (Akzeptor)
-kann nur Eingaben akzeptieren oder ablehnen. Deshalb sind
-Mealy-Automaten etwas komplizierter als Akzeptoren.
-Sie werden in der Regel durch einen 7er-Tupel definiert:
-\begin{align}
-    A=(\Sigma,\Omega,Q,\delta,\lambda,q_0,F)
-\end{align}
-
-Neu sind hier bloß $\Omega$,
-die Menge der Ausgabesymbole und
-$\lambda: Q \times \Sigma \rightarrow \Omega$, die Ausgabefunktion.
-\end{flushleft}
-
 \subsubsection{Potenzmengenkonstruktion}
 \begin{flushleft}
 Die Funktionsweise von deterministischen endlichen Automaten
@@ -352,7 +336,7 @@ Hier der übersichtliche Übergangsgraph:
 \end{tikzpicture}
 \end{center}
 
-\subsection{Programmierung von DEA's}
+\subsubsection{Programmierung von DEA's}
 \begin{flushleft}
 Es gibt natürlich verschiedene Wege DEA's zu programmieren,
 hier gehe ich jedoch nur auf einen Weg ein, der grundlegend
@@ -743,6 +727,237 @@ public static void main(String[] args) {
 }
 \end{lstlisting}
 \href{https://raw.githubusercontent.com/tim-tm/articles/refs/heads/main/informatik-notes/code/Automat.java}{\textit{Unkommentierter Code}} \\
+\end{center}
+
+\subsection{Mealy-Automaten}
+\subsubsection{Definition}
+\begin{flushleft}
+Mealy-Automaten können im Gegensatz zu normalen endlichen Automaten
+auch Ausgaben produzieren. Ein normaler endlicher Automat (Akzeptor)
+kann nur Eingaben akzeptieren oder ablehnen. Deshalb sind
+Mealy-Automaten etwas komplizierter als Akzeptoren.
+Sie werden in der Regel durch einen 7er-Tupel definiert:
+\begin{align}
+    A=(\Sigma,\Omega,Q,\delta,\lambda,q_0,F)
+\end{align}
+
+Neu sind hier bloß $\Omega$,
+die Menge der Ausgabesymbole und
+$\lambda: Q \times \Sigma \rightarrow \Omega$, die Ausgabefunktion.
+\end{flushleft}
+
+\subsubsection{Beispiel}
+\begin{flushleft}
+Der Mealy-Automat $A$ bildet die bitweise NICHT-Operation ab.
+\begin{align}
+    A&=(\Sigma,\Omega,Q,\delta,\lambda,q_0,F) \\
+    \Sigma &=\left\{0,1\right\}=\Omega \\
+    Q&=\left\{q_0\right\} \\
+    F&=\left\{q_0\right\}
+\end{align}
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}[->,
+    shorten >=5pt,
+    node distance=2.5cm,
+    semithick]
+    \node[initial,state,accepting] (R) {$q_0$};
+    \path (R) edge [loop above] node {$0/1$} (R)
+          (R) edge [loop below] node {$1/0$} (R);
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+Das Wort $w_0=001101$ erzeugt das neue Wort
+$w_1=110010$.
+Alle Bits der Binärzahl $w_0$ wurden umgekehrt.
+\end{flushleft}
+
+\subsection{Kellerautomaten}
+\subsubsection{Definition}
+\begin{flushleft}
+Kellerautomaten verfügen im Gegensatz zu endlichen Automaten über
+einen Kellerspeicher.
+Sie können auch durch einen 7er-Tupel definiert werden:
+\begin{align}
+    A=(Q,\Sigma,\Gamma,\delta,q_0,\#,F)
+\end{align}
+
+Hier steht $\Gamma$ für das Kelleralphabet und $\#\in\Gamma$ für
+das Anfangssymbol im Keller.
+Die Zustandsübergangsfunktion $\delta$ wird definiert als
+$\delta\colon Q\times\left(\Sigma\cup\left\{\epsilon\right\}\right)\times\Gamma\rightarrow\mathcal{P}\left(Q\times{\Gamma}^*\right)$.
+
+Ein Kellerautomat ist deterministisch, wenn es
+für eine Eingabe immer nur höchstens eine
+Zustandsübergangsabfolge gibt.
+
+Formal lässt sich diese Erkenntnis wie folgt ausdrücken:
+\begin{align}
+    \forall q\in Q,\quad\forall a\in\Sigma,\quad\forall g\in\Gamma \\
+    \left|\delta\left(q,a,g\right)\right|+
+    \left|\delta\left(q,\epsilon,g\right)\right|\leq 1
+\end{align}
+\end{flushleft}
+
+\subsubsection{Beispiel}
+\begin{flushleft}
+Der Kellerautomat $A$ ist deterministisch und akzeptiert die Sprache
+$L=\left\{a^n b^n\middle| n>0\right\}$.
+\begin{align}
+    A&=\left(Q,\Sigma,\Gamma,\delta,q_0,\#,F\right) \\
+    Q&=\left\{q_0,q_1,q_2\right\} \\
+    \Sigma &=\left\{a,b\right\} \\
+    \Gamma &=\left\{\#,a\right\} \\
+    F&=\left\{q_2\right\}
+\end{align}
+\end{flushleft}
+
+\begin{center}
+\begin{tikzpicture}[->,
+    shorten >=5pt,
+    node distance=2.5cm,
+    semithick]
+    \node[initial,state] (R) {$q_0$};
+    \node[state] (S) [right of=R] {$q_1$};
+    \node[state,accepting] (T) [right of=S] {$q_2$};
+    \path (R) edge [loop above] node {\scriptsize $\left(\#,a\right)\colon a\#$} (R)
+          (R) edge [loop below] node {\scriptsize $\left(a,a\right)\colon aa$} (R)
+          (R) edge node [above] {\scriptsize $\left(a,b\right)\colon\epsilon$} (S)
+          (S) edge [loop above] node {\scriptsize $\left(a,b\right)\colon\epsilon$} (S)
+          (S) edge node [above] {\scriptsize $\left(\#,\epsilon\right)\colon\epsilon$} (T);
+\end{tikzpicture}
+\end{center}
+
+\begin{flushleft}
+Wird das Wort $w_0=aabb$ akzeptiert?
+\end{flushleft}
+
+\begin{center}   
+\begin{tabular}{c|c|c}
+Symbol & Zustand & Kellerinhalt \\
+\hline
+$a$ &
+\scalebox{0.8}{
+    \begin{tikzpicture}[->,
+        shorten >=5pt,
+        node distance=2.5cm,
+        semithick]
+        \node[initial,state] (R) [fill=cyan!25] {$q_0$};
+        \node[state] (S) [right of=R] {$q_1$};
+        \node[state,accepting] (T) [right of=S] {$q_2$};
+        \path (R) edge [loop above] node [fill=magenta!25] {\scriptsize $\left(\#,a\right)\colon a\#$} (R)
+            (R) edge [loop below] node {\scriptsize $\left(a,a\right)\colon aa$} (R)
+            (R) edge node [above] {\scriptsize $\left(a,b\right)\colon\epsilon$} (S)
+            (S) edge [loop above] node {\scriptsize $\left(a,b\right)\colon\epsilon$} (S)
+            (S) edge node [above] {\scriptsize $\left(\#,\epsilon\right)\colon\epsilon$} (T);
+    \end{tikzpicture}
+} &
+\begin{tikzpicture}[minimum width=1cm, minimum height=0.5cm]
+    \matrix [matrix of nodes,
+                nodes={draw},
+                nodes in empty cells] {
+        $a$ \\ $\#$ \\
+    };
+\end{tikzpicture} \\
+\hline
+$a$ &
+\scalebox{0.8}{
+    \begin{tikzpicture}[->,
+        shorten >=5pt,
+        node distance=2.5cm,
+        semithick]
+        \node[initial,state] (R) [fill=cyan!25] {$q_0$};
+        \node[state] (S) [right of=R] {$q_1$};
+        \node[state,accepting] (T) [right of=S] {$q_2$};
+        \path (R) edge [loop above] node {\scriptsize $\left(\#,a\right)\colon a\#$} (R)
+            (R) edge [loop below] node [fill=magenta!25] {\scriptsize $\left(a,a\right)\colon aa$} (R)
+            (R) edge node [above] {\scriptsize $\left(a,b\right)\colon\epsilon$} (S)
+            (S) edge [loop above] node {\scriptsize $\left(a,b\right)\colon\epsilon$} (S)
+            (S) edge node [above] {\scriptsize $\left(\#,\epsilon\right)\colon\epsilon$} (T);
+    \end{tikzpicture}
+} &
+\begin{tikzpicture}[minimum width=1cm, minimum height=0.5cm]
+    \matrix [matrix of nodes,
+                nodes={draw},
+                nodes in empty cells] {
+        $a$ \\ $a$ \\ $\#$ \\
+    };
+\end{tikzpicture} \\
+\hline
+$b$ &
+\scalebox{0.8}{
+    \begin{tikzpicture}[->,
+        shorten >=5pt,
+        node distance=2.5cm,
+        semithick]
+        \node[initial,state] (R) {$q_0$};
+        \node[state] (S) [right of=R,fill=cyan!25] {$q_1$};
+        \node[state,accepting] (T) [right of=S] {$q_2$};
+        \path (R) edge [loop above] node {\scriptsize $\left(\#,a\right)\colon a\#$} (R)
+            (R) edge [loop below] node {\scriptsize $\left(a,a\right)\colon aa$} (R)
+            (R) edge node [above,fill=magenta!25] {\scriptsize $\left(a,b\right)\colon\epsilon$} (S)
+            (S) edge [loop above] node {\scriptsize $\left(a,b\right)\colon\epsilon$} (S)
+            (S) edge node [above] {\scriptsize $\left(\#,\epsilon\right)\colon\epsilon$} (T);
+    \end{tikzpicture}
+} &
+\begin{tikzpicture}[minimum width=1cm, minimum height=0.5cm]
+    \matrix [matrix of nodes,
+                nodes={draw},
+                nodes in empty cells] {
+        $a$ \\ $\#$ \\
+    };
+\end{tikzpicture} \\
+\hline
+$b$ &
+\scalebox{0.8}{
+    \begin{tikzpicture}[->,
+        shorten >=5pt,
+        node distance=2.5cm,
+        semithick]
+        \node[initial,state] (R) {$q_0$};
+        \node[state] (S) [right of=R,fill=cyan!25] {$q_1$};
+        \node[state,accepting] (T) [right of=S] {$q_2$};
+        \path (R) edge [loop above] node {\scriptsize $\left(\#,a\right)\colon a\#$} (R)
+            (R) edge [loop below] node {\scriptsize $\left(a,a\right)\colon aa$} (R)
+            (R) edge node [above] {\scriptsize $\left(a,b\right)\colon\epsilon$} (S)
+            (S) edge [loop above] node [fill=magenta!25] {\scriptsize $\left(a,b\right)\colon\epsilon$} (S)
+            (S) edge node [above] {\scriptsize $\left(\#,\epsilon\right)\colon\epsilon$} (T);
+    \end{tikzpicture}
+} &
+\begin{tikzpicture}[minimum width=1cm, minimum height=0.5cm]
+    \matrix [matrix of nodes,
+                nodes={draw},
+                nodes in empty cells] {
+        $\#$ \\
+    };
+\end{tikzpicture} \\
+\hline
+$\epsilon$ &
+\scalebox{0.8}{
+    \begin{tikzpicture}[->,
+        shorten >=5pt,
+        node distance=2.5cm,
+        semithick]
+        \node[initial,state] (R) {$q_0$};
+        \node[state] (S) [right of=R] {$q_1$};
+        \node[state,accepting] (T) [right of=S,fill=cyan!25] {$q_2$};
+        \path (R) edge [loop above] node {\scriptsize $\left(\#,a\right)\colon a\#$} (R)
+            (R) edge [loop below] node {\scriptsize $\left(a,a\right)\colon aa$} (R)
+            (R) edge node [above] {\scriptsize $\left(a,b\right)\colon\epsilon$} (S)
+            (S) edge [loop above] node {\scriptsize $\left(a,b\right)\colon\epsilon$} (S)
+            (S) edge node [above,fill=magenta!25] {\scriptsize $\left(\#,\epsilon\right)\colon\epsilon$} (T);
+    \end{tikzpicture}
+} &
+\begin{tikzpicture}[minimum width=1cm, minimum height=0.5cm]
+    \matrix [matrix of nodes,
+                nodes={draw},
+                nodes in empty cells] {
+        \\
+    };
+\end{tikzpicture}
+\end{tabular}
 \end{center}
 
 \section{Grammatiken}
