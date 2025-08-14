@@ -2,12 +2,13 @@
   *Das Diffie-Hellman Verfahren*
 ])
 #grid(
-  columns: (1fr),
+  columns: 1fr,
   align(center)[
     Tim Teichmann \
     #link("mailto:teichmanntim@outlook.de")
   ]
 )
+
 #pagebreak()
 #set page(numbering: "1")
 
@@ -22,22 +23,22 @@ zwei Zahlen $p in PP,g in NN, g<p$ wählen.
 
 Alice und Bob wählen außerdem jeweils einen privaten Schlüssel $a,b in NN$.
 Außerdem berechnen beiden einen öffentlichen Schlüssel $A,B$, den sie miteinander teilen.
-$ A&=g^a mod p $
-$ B&=g^b mod p $
+$ A & =g^a mod p $
+$ B & =g^b mod p $
 
 Nun bestimmen beide jeweils einen gemeinsamen Schlüssel $K_1$ und $K_2$.
-$ K_1&=B^a mod p $
-$ K_2&=A^b mod p $
+$ K_1 & =B^a mod p $
+$ K_2 & =A^b mod p $
 
 Sind die Parameter richtig gewählt, so gilt $K_1=K_2$:
-$ K_1&=B^a mod p $
-$ &=(g^b mod p)^a mod p $
-$ &=g^(b a) mod p $
-$ K_2&=A^b mod p $
-$ &=(g^a mod p)^b mod p $
-$ &=g^(a b) mod p $
-$ &=g^(b a) mod p $
-$ &=K_1 $
+$ K_1 & =B^a mod p $
+$ & =(g^b mod p)^a mod p $
+$ & =g^(b a) mod p $
+$ K_2 & =A^b mod p $
+$ & =(g^a mod p)^b mod p $
+$ & =g^(a b) mod p $
+$ & =g^(b a) mod p $
+$ & =K_1 $
 
 Alice kann Bob Nachrichten schicken, die mit dem Schlüssel $K_1$ verschlüsselt wurden.
 Bob kann diese mit seinem Schlüssel $K_2$ entschlüsseln.
@@ -48,8 +49,8 @@ Celine sind also die Werte von $p,g,A$ und $B$ bekannt.
 
 Um den Wert von einer der geheimen Variablen $a$ oder $b$ zu bestimmen,
 muss Celine eine der folgenden Gleichungen lösen:
-$ A&=g^a mod p $
-$ B&=g^b mod p $
+$ A & =g^a mod p $
+$ B & =g^b mod p $
 
 In diesem Beispiel gehen wir davon aus, dass $p=13,g=2,A=8$ und $B=4$ ist.
 Die geheimen Werte sind $a=3,b=2$ und $K=12$, diese kennt Celine jedoch nicht.
@@ -60,11 +61,11 @@ Wert von $a$ zu bestimmen, wenn der öffentliche Schlüssel durch
 die Gleichung $A=g^a$ berechnet würde.
 In diesem Fall könnte man nämlich eine Umkehroperation der Exponentiation,
 den Logarithmus, verwenden:
-$ A&=g^a $
-$ <=> ln(A)&=ln(g^a) $
-$ <=> ln(A)&=a ln(g) $
-$ <=> frac(ln(A), ln(g))&=a $
-$ <=> a&=frac(ln(A), ln(g)) $
+$ A & =g^a $
+$ <=> ln(A) & =ln(g^a) $
+$ <=> ln(A) & =a ln(g) $
+$ <=> frac(ln(A), ln(g)) & =a $
+$ <=> a & =frac(ln(A), ln(g)) $
 
 Die Berechnung von $A=g^a mod p$ ist die diskrete Exponentiation.
 Die Umkehroperation ist der diskrete Logarithmus.
@@ -165,10 +166,10 @@ In echten Anwendungen ist $p$ normalerweise mindestens
 Eine 2048-Bit lange Primzahl $p$ hat in etwa 617 Dezimalstellen, da
 ein Bit die Werte 0 oder 1 annehmen kann, während eine Dezimalzahl
 einen Wert zwischen 0 und 9 annehmen kann:
-$ 2^(2048) &= 10^n $
-$ <=> ln(2^(2048)) &= ln(10^n) $
-$ <=> 2048 ln(2) &= n ln(10) $
-$ <=> frac(2048 ln(2), ln(10)) &= n $
+$ 2^(2048) & = 10^n $
+$ <=> ln(2^(2048)) & = ln(10^n) $
+$ <=> 2048 ln(2) & = n ln(10) $
+$ <=> frac(2048 ln(2), ln(10)) & = n $
 $ <=> n & approx 616.51 approx 617 $
 
 Die kleinste ganze Zahl mit 617 Dezimalstellen ist $10^(616)$.
